@@ -1,0 +1,11 @@
+# Production
+/build
+
+
+# Dependency directory
+node_modules
+
+
+# misc
+.DS_Store
+.idea

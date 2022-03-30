@@ -1,7 +1,6 @@
 .container {
   width: 100%;
-  height: 100px;
-  background-color: darkred;
+  outline: 1px solid red; /*del*/
 }
 
 /*.App {*/

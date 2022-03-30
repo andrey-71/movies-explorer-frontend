@@ -1,0 +1,23 @@
+.container__header {
+  margin: 0 auto;
+  background-color: #dddee3;
+}
+
+.header {
+  max-width: 1280px;
+  height: 100%;
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  /*background-color: #dddee3;*/
+  box-sizing: border-box;
+  padding: 0 70px;
+  outline: 1px solid blue; /*del*/
+}
+
+.header__logo {
+  background: url('../../images/header_logo.svg') center no-repeat;
+  min-width: 38px;
+  min-height: 38px;
+  margin-right: 44px;
+}

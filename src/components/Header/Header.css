@@ -1,6 +1,7 @@
+
 .container__header {
   margin: 0 auto;
-  background-color: #dddee3;
+  /*background-color: #fff;*/
 }
 
 .header {
@@ -13,6 +14,14 @@
   box-sizing: border-box;
   padding: 0 70px;
   outline: 1px solid blue; /*del*/
+}
+
+.header_type_unauthorized {
+  background-color: #dddee3;
+}
+
+.header_type_authorized {
+  background-color: #fff;
 }
 
 .header__logo {

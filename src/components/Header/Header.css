@@ -1,16 +1,14 @@
 
 .container__header {
   margin: 0 auto;
-  /*background-color: #fff;*/
 }
 
 .header {
   max-width: 1280px;
-  height: 100%;
   min-height: 74px;
+  height: 100%;
   display: flex;
   align-items: center;
-  /*background-color: #dddee3;*/
   box-sizing: border-box;
   padding: 0 70px;
   outline: 1px solid blue; /*del*/
@@ -29,4 +27,16 @@
   min-width: 38px;
   min-height: 38px;
   margin-right: 44px;
+}
+
+@media screen and (max-width:1023px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width:424px) {
+  .header {
+    padding: 0 14px;
+  }
 }

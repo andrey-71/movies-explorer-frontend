@@ -35,6 +35,11 @@
   -o-text-overflow: ellipsis;
   color: #000;
   text-decoration: none;
+  transition: opacity .3s;
+}
+
+.navigation__link:hover {
+  opacity: .7;
 }
 
 .navigation__link_type_films {
@@ -77,10 +82,30 @@
   -o-text-overflow: ellipsis;
   color: #fff;
   cursor: pointer;
+  transition: opacity .3s;
+}
+
+.navigation__signin-button:hover {
+  opacity: .7;
 }
 
 .navigation__link_type_account{
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
+}
+
+@media screen and (max-width:424px) {
+  .navigation__link_type_singup {
+    padding-right: 26px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  
+  .navigation__signin-button {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
 }

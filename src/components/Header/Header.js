@@ -1,8 +1,9 @@
 import './Header.css';
+import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 
 function Header() {
-  const auth = false;
+  const auth = true;
 
   return (
     <header className={auth ?
@@ -10,7 +11,7 @@ function Header() {
       :
       'header header_type_unauthorized container__header'
     }>
-      <div className='header__logo'> </div>
+      <Logo />
       <Navigation
         auth={auth}
       />

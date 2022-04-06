@@ -3,6 +3,7 @@ import './Header.css';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 import BurgerButton from '../BurgerButton/BurgerButton';
+import MenuBurger from '../MenuBurger/MenuBurger';
 
 function Header() {
   const isLogged = true; // del
@@ -23,6 +24,7 @@ function Header() {
         isLogged={isLogged}
       />
       {isLogged && <BurgerButton onClick={handleMenuBurger}/>}
+      <MenuBurger isActive={isMenuBurgerActive} />
     </header>
   )
 }

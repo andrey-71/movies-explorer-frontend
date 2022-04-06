@@ -1,0 +1,64 @@
+.menu-burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  transition: opacity .6s;
+}
+
+@media screen and (max-width:768px) {
+  .menu-burger_active {
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 1;
+  }
+  
+  .menu-burger__films {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 144px;
+  }
+  
+  .menu-burger__link {
+    font-family: "Inter", "Arial", "Helvetica", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.22;
+    text-rendering: optimizeLegibility;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity .3s;
+  }
+  
+  .menu-burger__link:hover {
+    opacity: .7;
+  }
+  
+  .menu-burger__link:not(:first-child) {
+    padding-top: 24px;
+  }
+  
+  .menu-burger__link_account {
+    padding-bottom: 54px;
+    font-size: 14px;
+    line-height: 1.14;
+  }
+}
+

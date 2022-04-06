@@ -4,13 +4,13 @@ function Navigation(props) {
 
   return (
     <nav className='navigation'>
-      {props.auth ?
+      {props.isLogged ?
         <div className='navigation__authorized'>
-          <div className='navigation__movies'>
+          <div>
             <a href='#' className='navigation__link navigation__link_type_films'>Фильмы</a>
             <a href='#' className='navigation__link navigation__link_type_save-films'>Сохранённые фильмы</a>
           </div>
-          <div className='navigation__account'>
+          <div>
             <a href='#' className='navigation__link navigation__link_type_account'>Аккаунт</a>
           </div>
         </div>

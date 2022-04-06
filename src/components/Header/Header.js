@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import './Header.css';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
@@ -5,6 +6,11 @@ import BurgerButton from '../BurgerButton/BurgerButton';
 
 function Header() {
   const isLogged = true; // del
+  const [isMenuBurgerActive, setIsMenuBurgerActive] = useState(false);
+
+  function handleMenuBurger() {
+    setIsMenuBurgerActive(!isMenuBurgerActive);
+  }
 
   return (
     <header className={isLogged ?
@@ -16,7 +22,7 @@ function Header() {
       <Navigation
         isLogged={isLogged}
       />
-      {isLogged && <BurgerButton />}
+      {isLogged && <BurgerButton onClick={handleMenuBurger}/>}
     </header>
   )
 }

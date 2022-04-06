@@ -1,18 +1,21 @@
-
 .container__header {
   margin: 0 auto;
 }
 
 .header {
   max-width: 1280px;
-  min-height: 74px;
-  height: 100%;
+  width: 100%;
+  height: 74px;
+  position: sticky;
+  top: 0;
+  left: 0;
   display: grid;
   grid-template-columns: 82px auto;
   justify-items: end;
   align-items: center;
   padding: 0 70px;
   box-sizing: border-box;
+  z-index: 1;
   outline: 1px solid blue; /*del*/
 }
 

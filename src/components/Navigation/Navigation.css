@@ -92,7 +92,7 @@
   }
 }
 
-@media screen and (max-width:424px) {
+@media screen and (max-width:480px) {
   .navigation__link_type_singup {
     padding-right: 26px;
     font-size: 10px;

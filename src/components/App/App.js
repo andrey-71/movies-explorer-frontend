@@ -4,9 +4,12 @@ import Main from '../Main/Main';
 
 function App() {
   return (
-    <div className='container'>
+    <div className='page'>
       <Header />
-      <Main />
+
+      <main className='content page__content'>
+        <Main />
+      </main>
     </div>
   );
 }

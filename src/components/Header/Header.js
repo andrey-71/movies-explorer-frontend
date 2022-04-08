@@ -15,9 +15,9 @@ function Header() {
 
   return (
     <header className={isLogged ?
-      'header header_type_authorized container__header'
+      'header header_type_authorized page__header'
       :
-      'header header_type_unauthorized container__header'
+      'header header_type_unauthorized page__header'
     }>
       <Logo />
       <Navigation

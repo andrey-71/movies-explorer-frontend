@@ -1,4 +1,12 @@
-.container {
+.page {
   width: 100%;
-  outline: 1px solid red; /*del*/
+}
+
+.page__content {
+  margin: 0 auto;
+}
+
+.content {
+  max-width: 1280px;
+  width: 100%;
 }

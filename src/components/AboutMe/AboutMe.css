@@ -1,0 +1,196 @@
+.about-me {
+  padding: 110px 70px 100px;
+}
+
+.about-me__title {
+  margin: 0;
+  border-bottom: 1px solid #000;
+  padding-bottom: 23px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.23;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.about-me__info {
+  padding-top: 66px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-me__text-info {
+  max-width: 600px;
+  width: 100%;
+  padding-right: 50px;
+}
+
+.about-me__info-name {
+  margin: 0;
+  padding-bottom: 18px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -.04em;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.about-me__info-profession {
+  margin: 0;
+  padding-bottom: 26px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.about-me__info-description {
+  margin: 0;
+  padding-bottom: 99px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 14px;
+  line-height: 1.57;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.about-me__links-social {
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+.about-me__links-social:hover {
+  opacity: .7;
+}
+
+.about-me__links-social:not(:last-of-type) {
+  padding-right: 20px;
+}
+
+.about-me__image-author {
+  max-width: 270px;
+  width: 100%;
+  max-height: 327px;
+  height: 100%;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .about-me {
+    padding: 90px 50px;
+  }
+  
+  .about-me__info-name {
+    padding-bottom: 16px;
+    font-size: 40px;
+    line-height: 1;
+  }
+  
+  .about-me__info-profession {
+    padding-bottom: 20px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  .about-me__info-description {
+    padding-bottom: 87px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+/*@media screen and (max-width: 768px) {*/
+
+/*}*/
+
+@media screen and (max-width: 767px) {
+  .about-me__info {
+    flex-direction: column-reverse;
+  }
+  
+  .about-me__text-info {
+    padding: 40px 0 0;
+  }
+  
+  .about-me__info-description {
+    padding-bottom: 40px;
+  }
+  
+  .about-me__image-author {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about-me {
+    padding: 70px 14px 69px;
+  }
+  
+  .about-me__title {
+    padding-bottom: 28px;
+    font-size: 18px;
+    line-height: 1.23;
+  }
+  
+  .about-me__info {
+    padding-top: 60px;
+  }
+  
+  .about-me__info-name {
+    padding-bottom: 20px;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+  
+  .about-me__info-profession, .about-me__info-description {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  
+  .about-me__links-social:not(:last-of-type) {
+    padding-right: 26px;
+  }
+}

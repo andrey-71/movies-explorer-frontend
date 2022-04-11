@@ -89,11 +89,6 @@
 .about-project__stage-week_backend {
   background-color: #3456f3;
   color: #fff;
-  transition: opacity .3s;
-}
-
-.about-project__stage-week_backend:hover {
-  opacity: .7;
 }
 
 .about-project__stage-description {
@@ -105,11 +100,73 @@
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   font-size: 14px;
-  font-weight: 500;
   line-height: 1.21;
   text-rendering: optimizeLegibility;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   color: #a0a0a0;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project {
+    padding: 90px 50px;
+  }
+  
+  .about-project__info {
+    grid-column-gap: 30px;
+  }
+  
+  .about-project__item-title {
+    padding-bottom: 22px;
+  }
+  
+  .about-project__item-description {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about-project {
+    padding: 70px 18px;
+  }
+  
+  .about-project__title {
+    padding-bottom: 28px;
+    font-size: 18px;
+    line-height: 1.23;
+  }
+  
+  .about-project__info {
+    padding: 60px 0;
+    grid-template-columns: 1fr;
+    grid-row-gap: 56px;
+  }
+  
+  .about-project__item-title {
+    padding-bottom: 16px;
+    font-size: 18px;
+    line-height: 1.22;
+  }
+  
+  .about-project__item-description {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  
+  .about-project__stages {
+    grid-template-rows: 35px auto;
+    grid-row-gap: 10px;
+  }
+  
+  .about-project__stage-week {
+    font-size: 11px;
+    line-height: 1.18;
+  }
+  
+  .about-project__stage-description {
+    font-size: 11px;
+    line-height: 1.18;
+  }
 }

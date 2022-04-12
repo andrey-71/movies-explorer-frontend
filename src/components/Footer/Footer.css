@@ -1,0 +1,128 @@
+.footer {
+  padding: 79px 70px 20px;
+}
+
+.footer__text {
+  margin: 0;
+  padding-bottom: 41px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 13px;
+  line-height: 1.23;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-align: center;
+  color: #a0a0a0;
+}
+
+.footer__items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__copyright {
+  margin: 0;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 13px;
+  line-height: 1.23;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.footer__links {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.footer__link {
+  padding-left: 20px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 13px;
+  line-height: 1.23;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+.footer__link:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    padding: 79px 30px 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    padding: 79px 10px 10px;
+  }
+  
+  .footer__text {
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 21px;
+    margin-bottom: 30px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+  
+  .footer__items {
+    flex-direction: column-reverse;
+  }
+  
+  .footer__copyright {
+    font-size: 12px;
+    line-height: 1.25;
+    color: #a0a0a0;
+  }
+  
+  .footer__links {
+    padding-bottom: 30px;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer__links {
+    padding-bottom: 30px;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer__link {
+    padding-left: 0;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+  
+  .footer__link-item:not(:last-of-type) {
+    padding-bottom: 12px;
+  }
+}

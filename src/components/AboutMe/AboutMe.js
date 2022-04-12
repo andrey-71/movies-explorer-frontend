@@ -21,12 +21,14 @@ function AboutMe() {
           <a
             className='about-me__links-social'
             href='https://www.facebook.com/'
+            target='_blank'
           >
             Facebook
           </a>
           <a
             className='about-me__links-social'
             href='https://github.com/andrey-71'
+            target='_blank'
           >
             Github
           </a>

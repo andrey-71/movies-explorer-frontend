@@ -1,4 +1,8 @@
 .filter-checkbox {
+  display: flex;
+}
+
+.filter-checkbox__container {
   display: block;
   position: relative;
   width: 36px;
@@ -42,4 +46,34 @@
 .filter-checkbox__custom-checkbox .filter-checkbox__circle {
   left: 18px;
   background-color: #2be080;
+}
+
+.filter-checkbox__description {
+  margin: 0;
+  padding-left: 14px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 13px;
+  line-height: 1.38;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 768px) {
+  .filter-checkbox__description {
+    padding-left: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .filter-checkbox__description {
+    padding-left: 13px;
+    font-size: 11px;
+    line-height: 1.64;
+  }
 }

@@ -57,7 +57,7 @@
   height: 32px;
   padding: 0;
   border: 0;
-  background-color: rgba(52, 86, 243, 1);
+  background-color: #3456f3;
   border-radius: 3px;
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -73,7 +73,7 @@
   -o-text-overflow: ellipsis;
   color: #fff;
   cursor: pointer;
-  transition: opacity .3s;
+  transition: .3s;
 }
 
 .navigation__signin-button:hover {

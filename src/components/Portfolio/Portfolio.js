@@ -9,7 +9,7 @@ function Portfolio() {
         <li className='portfolio__item'>
           <a
             className='portfolio__item-link'
-            href='#'
+            href='https://github.com/andrey-71/how-to-learn'
             target='_blank'
           >
             Статичный сайт
@@ -19,7 +19,7 @@ function Portfolio() {
         <li className='portfolio__item'>
           <a
             className='portfolio__item-link'
-            href='#'
+            href='https://github.com/andrey-71/russian-travel'
             target='_blank'
           >
             Адаптивный сайт
@@ -29,7 +29,7 @@ function Portfolio() {
         <li className='portfolio__item'>
           <a
             className='portfolio__item-link'
-            href='#'
+            href='https://github.com/andrey-71/react-mesto-auth'
             target='_blank'
           >
             Одностраничное приложение

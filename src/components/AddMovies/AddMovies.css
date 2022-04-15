@@ -1,5 +1,6 @@
 .add-movies {
   padding: 50px 70px 80px;
+  background-color: #fafafa;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,5 +1,13 @@
+.page__footer {
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 .footer {
+  max-width: 1280px;
+  width: 100%;
   padding: 79px 70px 20px;
+  background-color: #f8f8f8;
 }
 
 .footer__text {

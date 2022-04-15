@@ -1,0 +1,42 @@
+.add-movies {
+  padding: 50px 70px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-movies__button {
+  width: 200px;
+  padding: 0;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  border: none;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.add-movies__button:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 1024px) {
+  .add-movies {
+    padding: 50px 30px 80px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .add-movies {
+    padding: 50px 10px 80px;
+  }
+}

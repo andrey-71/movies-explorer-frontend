@@ -1,6 +1,7 @@
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
+import AddMovies from '../AddMovies/AddMovies';
 
 function Movies() {
 
@@ -8,6 +9,7 @@ function Movies() {
     <>
       <SearchForm />
       <Preloader />
+      <AddMovies />
     </>
   )
 }

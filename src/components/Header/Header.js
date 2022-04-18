@@ -6,7 +6,7 @@ import BurgerButton from '../BurgerButton/BurgerButton';
 import MenuBurger from '../MenuBurger/MenuBurger';
 
 function Header() {
-  const isLogged = false; // del
+  const isLogged = true; // del
   const [isMenuBurgerActive, setIsMenuBurgerActive] = useState(false);
 
   function handleMenuBurger() {

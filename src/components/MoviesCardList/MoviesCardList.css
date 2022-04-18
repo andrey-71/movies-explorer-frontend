@@ -1,0 +1,16 @@
+.cards {
+  padding: 70px 70px 30px;
+  background-color: #fafafa;
+}
+
+@media screen and (max-width: 1024px) {
+  .cards {
+    padding: 70px 30px 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cards {
+    padding: 40px 10px 30px;
+  }
+}

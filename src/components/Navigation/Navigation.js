@@ -11,7 +11,7 @@ function Navigation(props) {
             <a href='#' className='navigation__link navigation__link_type_save-films'>Сохранённые фильмы</a>
           </div>
           <div>
-            <a href='#' className='navigation__link navigation__link_type_account'>Аккаунт</a>
+            <button className='navigation__account-button'>Аккаунт</button>
           </div>
         </div>
         :

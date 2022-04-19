@@ -1,0 +1,76 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.card__container-info {
+  display: grid;
+  grid-template-areas: 'title button'
+                       'duration button';
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+}
+
+.card__title {
+  grid-area: title;
+  margin: 0;
+  padding-bottom: 9px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__duration {
+  grid-area: duration;
+  margin: 0;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  font-size: 11px;
+  line-height: 1.18;
+  color: #a0a0a0;
+}
+
+.card__saved-button {
+  grid-area: button;
+  width: 30px;
+  height: 30px;
+  margin-left: 26px;
+  background: url('../../images/saved-movie-button_icon.svg') no-repeat center #f4f4f4;
+  border: 1px solid #e8e8e8;
+  border-radius: 36px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.card__saved-button_active {
+  background-color: #3456f3;
+  border: 1px solid #3456f3;
+}
+
+.card__saved-button:hover {
+  opacity: .7;
+}
+
+.card__image {
+  width: 100%;
+}

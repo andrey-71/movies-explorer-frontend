@@ -41,6 +41,7 @@
   border-bottom: 1px solid #fff;
   padding: 0;
   margin-right: 30px;
+  background-color: inherit;
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

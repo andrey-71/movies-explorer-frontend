@@ -1,9 +1,9 @@
 .add-movies {
-  padding: 50px 0 80px;
-  background-color: #fafafa;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 50px 0 80px;
+  background-color: #fafafa;
 }
 
 .add-movies_invisible {
@@ -27,13 +27,14 @@
   text-rendering: optimizeLegibility;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
-  border: none;
+  border: 1px solid #f4f4f4;
   border-radius: 6px;
   cursor: pointer;
   transition: .3s;
 }
 
 .add-movies__button:hover {
+  border: 1px solid #ccc;
   opacity: .7;
 }
 

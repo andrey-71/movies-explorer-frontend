@@ -83,11 +83,12 @@
 .navigation__account-button {
   width: 100px;
   height: 32px;
+  padding: 0;
   background-color: #f4f4f4;
-  border: none;
+  border: 1px solid #f4f4f4;
   border-radius: 20px;
   cursor: pointer;
-  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
@@ -103,6 +104,7 @@
 }
 
 .navigation__account-button:hover {
+  border: 1px solid #ccc;
   opacity: .7;
 }
 

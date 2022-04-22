@@ -22,7 +22,6 @@ function MoviesCardList() {
       </section>
       <Preloader />
     </>
-
   )
 }
 

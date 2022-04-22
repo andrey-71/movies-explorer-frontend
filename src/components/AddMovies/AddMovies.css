@@ -1,5 +1,5 @@
 .add-movies {
-  padding: 50px 70px 80px;
+  padding: 50px 0 80px;
   background-color: #fafafa;
   display: flex;
   justify-content: center;
@@ -35,12 +35,12 @@
 
 @media screen and (max-width: 1024px) {
   .add-movies {
-    padding: 50px 30px 80px;
+    padding: 50px 0 80px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .add-movies {
-    padding: 50px 10px 80px;
+    padding: 50px 0 80px;
   }
 }

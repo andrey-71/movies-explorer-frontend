@@ -6,11 +6,11 @@ import AddMovies from '../AddMovies/AddMovies';
 function Movies() {
 
   return (
-    <>
+    <section className="movies">
       <SearchForm />
       <MoviesCardList />
       <AddMovies />
-    </>
+    </section>
   )
 }
 

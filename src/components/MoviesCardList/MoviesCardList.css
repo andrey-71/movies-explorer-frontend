@@ -3,7 +3,7 @@
   grid-template-columns: repeat(auto-fit, 364px);
   grid-gap: 30px 24px;
   justify-content: center;
-  padding: 70px 70px 30px;
+  padding: 70px 0 30px;
   background-color: #fafafa;
 }
 
@@ -11,14 +11,14 @@
   .cards {
     grid-template-columns: repeat(2, minmax(300px, 364px));
     grid-gap: 36px 30px;
-    padding: 70px 30px 30px;
+    padding: 70px 0 30px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .cards {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 364px));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 339px));
     grid-gap: 36px 30px;
-    padding: 40px 10px 30px;
+    padding: 40px 0 30px;
   }
 }

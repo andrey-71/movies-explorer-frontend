@@ -1,10 +1,18 @@
 .preloader {
-  margin: 68px auto 98px;
-  width: .5em;
-  height: .5em;
-  background-color: #fafafa;
+  display: none;
+  padding: 63px 0 93px;
+}
+
+.preloader_visible {
+  display: block;
+}
+
+.preloader__element {
+  display: block;
+  margin: 0 auto;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  position: relative;
   -webkit-animation: load 1.1s infinite ease;
   animation: load 1.1s infinite ease;
   -webkit-transform: translateZ(0);

@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+.add-movies_invisible {
+  display: none;
+}
+
 .add-movies__button {
   width: 100%;
   height: 36px;

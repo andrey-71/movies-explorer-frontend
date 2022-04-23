@@ -3,8 +3,11 @@ import {useState} from 'react';
 
 function MoviesCard(props) {
   const [isSaved, setIsSaved] = useState(false);
-  const savedButtonClassName = !isSaved ? 'card__saved-button'
-    : 'card__saved-button card__saved-button_active';
+  const buttonMoviesClassName = !isSaved ?
+    'card__saved-button card__saved-button_type_movies'
+    :
+    'card__saved-button card__saved-button_type_movies card__saved-button_active';
+  const buttonSavedMoviesClassName = 'card__saved-button card__saved-button_type_saved-movies';
 
   function handleSavedFilm() {
     return setIsSaved(!isSaved);
@@ -15,7 +18,7 @@ function MoviesCard(props) {
     const minutes = props.duration%60;
     let resultDuration = '';
     if (hours !== 0) { resultDuration += `${parseInt(hours)}ч ` }
-    if (minutes !== 0) { resultDuration += `${minutes}m` }
+    if (minutes !== 0) { resultDuration += `${minutes}м` }
     return resultDuration;
   }
 
@@ -26,10 +29,16 @@ function MoviesCard(props) {
       <div className='card__container-info'>
         <h2 className='card__title'>{props.name}</h2>
         <p className='card__duration'>{durationMovies}</p>
-        <button
-          className={savedButtonClassName}
-          onClick={handleSavedFilm}
-        />
+        {!props.isPageSavedMovies ?
+          <button
+            className={buttonMoviesClassName}
+            onClick={handleSavedFilm}
+          />
+          :
+          <button
+            className={buttonSavedMoviesClassName}
+          />
+        }
       </div>
       <img
         className='card__image'

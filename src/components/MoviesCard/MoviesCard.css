@@ -55,7 +55,6 @@
   width: 30px;
   height: 30px;
   margin-left: 26px;
-  background: url('../../images/saved-movie-button_icon.svg') no-repeat center #f4f4f4;
   border: 1px solid #e8e8e8;
   opacity: .7;
   border-radius: 36px;
@@ -66,6 +65,14 @@
 .card__saved-button:hover {
   border: 1px solid #ccc;
   opacity: 1;
+}
+
+.card__saved-button_type_movies {
+  background: url('../../images/saved-movie-button_icon.svg') no-repeat center #f4f4f4;
+}
+
+.card__saved-button_type_saved-movies {
+  background: url('../../images/saved-movie-button-savedmovies_icon.svg') no-repeat center #f4f4f4;
 }
 
 .card__saved-button_active {

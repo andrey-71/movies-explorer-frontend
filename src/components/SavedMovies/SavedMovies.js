@@ -1,19 +1,18 @@
-import './Movies.css';
+import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import AddMovies from '../AddMovies/AddMovies';
 
-function Movies(props) {
+function SavedMovies(props) {
 
   return (
-    <section className="movies">
+    <section className='saved-movies'>
       <SearchForm />
       <MoviesCardList
+        isPageSavedMovies={props.isPageSavedMovies}
         movies={props.movies}
       />
-      <AddMovies />
     </section>
   )
 }
 
-export default Movies;
+export default SavedMovies;

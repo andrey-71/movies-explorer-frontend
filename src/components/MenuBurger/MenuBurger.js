@@ -15,11 +15,11 @@ function MenuBurger(props) {
     <div className={menuBurgerClassName}>
       <nav className={menuBurgerContainerClassName}>
         <div className='menu-burger__films'>
-          <a href='#' className='menu-burger__link'>Главная</a>
-          <a href='#' className='menu-burger__link'>Фильмы</a>
+          <h2 className='menu-burger__title'>Главная</h2>
+          <a href='#' className='menu-burger__link menu-burger__link_active'>Фильмы</a>
           <a href='#' className='menu-burger__link'>Сохраненные фильмы</a>
         </div>
-        <a href='#' className='menu-burger__link menu-burger__link_account'>Аккаунт</a>
+        <button className='menu-burger__account-button'>Аккаунт</button>
       </nav>
     </div>
   )

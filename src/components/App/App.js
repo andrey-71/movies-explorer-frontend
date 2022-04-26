@@ -4,6 +4,7 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
+import Register from "../Register/Register";
 import Footer from '../Footer/Footer';
 import { moviesList, savedMoviesList } from '../../utils/config';
 
@@ -11,13 +12,16 @@ function App() {
   const main = false;
   const movies = false;
   const savedMovies = false;
-  const profile = true;
-  // const register = false;
-  // const login = false;
+  const profile = false;
+  const register = true;
+  const login = false;
 
   return (
     <div className='page'>
-      <Header />
+      {!register && !login &&
+        <Header />
+      }
+
       <main className='content page__content'>
 
         {main &&
@@ -41,10 +45,14 @@ function App() {
           <Profile />
         }
 
-        {!profile &&
-        <Footer />
+        {register &&
+          <Register isRegister={register} />
         }
       </main>
+
+      {!profile && !register &&
+        <Footer />
+      }
     </div>
   );
 }

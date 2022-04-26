@@ -12,7 +12,7 @@ function Profile() {
             className='profile__input'
             type='text'
             name='name-profile'
-            placeholder='Имя'
+            placeholder='Введите имя'
           />
           <span className='profile__input-error'>span</span>
         </label>
@@ -21,7 +21,7 @@ function Profile() {
         <input
           className='profile__input'
           type='text' name='email-profile'
-          placeholder='E-mail'
+          placeholder='Введите e-mail'
         />
         <span className='profile__input-error'>span</span>
       </label>

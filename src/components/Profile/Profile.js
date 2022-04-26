@@ -8,11 +8,21 @@ function Profile() {
       <form name='form-profile' className='profile__form'>
         <label className='profile__input-item'>
           <p className='profile__input-description'>Имя</p>
-          <input type='text' name='name-profile' placeholder='Имя' className='profile__input'/>
+          <input
+            className='profile__input'
+            type='text'
+            name='name-profile'
+            placeholder='Имя'
+          />
           <span className='profile__input-error'>span</span>
-        </label><label className='profile__input-item'>
+        </label>
+        <label className='profile__input-item'>
         <p className='profile__input-description'>E-mail</p>
-        <input type='text' name='name-profile' placeholder='E-mail' className='profile__input'/>
+        <input
+          className='profile__input'
+          type='text' name='email-profile'
+          placeholder='E-mail'
+        />
         <span className='profile__input-error'>span</span>
       </label>
         <button type='submit' className='profile__submit-button'>Редактировать</button>

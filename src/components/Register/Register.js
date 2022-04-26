@@ -3,7 +3,7 @@ import Authorization from '../Authorization/Authorization';
 
 function Register(props) {
   const namePage = 'register'
-  const title = 'Добро пожаловать';
+  const title = 'Добро пожаловать!';
   const submitTextButton = 'Зарегистрироваться'
 
   return (

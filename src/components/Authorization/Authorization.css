@@ -53,7 +53,7 @@
 }
 
 .authorization__input-item:not(:last-of-type) {
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .authorization__input-description {
@@ -100,7 +100,13 @@
 }
 
 .authorization__input-error {
+  color: #ee3465;
+}
+
+.authorization__text-error {
   opacity: 0;
+  display: block;
+  padding-top: 10px;
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -115,19 +121,20 @@
   color: #ee3465;
 }
 
-.authorization__input-error_visible {
+.authorization__text-error_visible {
   opacity: 1;
 }
 
 .authorization__footer {
   max-width: 456px;
   width: 100%;
-  padding: 69px 30px 30px;
+  margin-top: 70px;
+  padding: 0 30px 30px;
   box-sizing: border-box;
 }
 
 .authorization__footer_login {
-  padding-top: 179px;
+  padding-top: 109px;
 }
 
 .authorization__submit-button {
@@ -234,10 +241,10 @@
   }
   
   .authorization__footer {
-    padding-top: 157px;
+    padding-top: calc(100vh - 693px);
   }
   
   .authorization__footer_login {
-    padding-top: 267px;
+    padding-top: calc(100vh - 605px);
   }
 }

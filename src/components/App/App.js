@@ -55,7 +55,7 @@ function App() {
         }
       </main>
 
-      {!profile && !register &&
+      {!profile && !register && !login &&
         <Footer />
       }
     </div>

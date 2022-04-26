@@ -24,29 +24,27 @@ function Authorization(props) {
                 name={`name-${props.namePage}`}
                 placeholder='Введите имя'
               />
-              <span className='authorization__input-error'>span</span>
             </label>
           }
           <label className='authorization__input-item'>
             <p className='authorization__input-description'>E-mail</p>
             <input
               className='authorization__input'
-              type='text'
+              type='email'
               name={`email-${props.namePage}`}
               placeholder='Введите e-mail'
             />
-            <span className='authorization__input-error'>span</span>
           </label>
           <label className='authorization__input-item'>
             <p className='authorization__input-description'>Пароль</p>
             <input
-              className='authorization__input'
-              type='text'
+              className='authorization__input authorization__input-error'
+              type='password'
               name={`password-${props.namePage}`}
               placeholder='Введите пароль'
             />
-            <span className='authorization__input-error'>span</span>
           </label>
+          <span className='authorization__text-error authorization__text-error_visible'>Что-то пошло не так...</span>
         </form>
       </div>
       <div

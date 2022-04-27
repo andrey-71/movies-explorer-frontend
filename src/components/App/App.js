@@ -6,6 +6,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from "../Register/Register";
 import Login from "../Login/Login";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Footer from '../Footer/Footer';
 import { moviesList, savedMoviesList } from '../../utils/config';
 
@@ -15,11 +16,12 @@ function App() {
   const savedMovies = false;
   const profile = false;
   const register = false;
-  const login = true;
+  const login = false;
+  const notFoundPage = true;
 
   return (
     <div className='page'>
-      {!register && !login &&
+      {!register && !login && !notFoundPage &&
         <Header />
       }
 
@@ -53,9 +55,13 @@ function App() {
         {login &&
           <Login isLogin={login} />
         }
+
+        {notFoundPage &&
+          <NotFoundPage />
+        }
       </main>
 
-      {!profile && !register && !login &&
+      {!profile && !register && !login && !notFoundPage &&
         <Footer />
       }
     </div>

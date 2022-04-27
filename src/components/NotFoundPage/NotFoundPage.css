@@ -1,0 +1,96 @@
+.error-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.error-page__title {
+  margin: 0;
+  padding-bottom: 5px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 140px;
+  font-weight: 400;
+  line-height: 1.21;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-align: center;
+}
+
+.error-page__description {
+  margin: 0;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 16px;
+  line-height: 1.19;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-align: center;
+}
+
+.error-page__navigate {
+  position: absolute;
+  top: calc(50vh + 240px);
+  left: auto;
+  padding-bottom: 30px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 14px;
+  line-height: 1.21;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-decoration: none;
+  color: #3456f3;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.error-page__navigate:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 767px) {
+  .error-page__navigate {
+    top: auto;
+    bottom: 30px;
+    padding-bottom: 0;
+  }
+  
+  .error-page__title {
+    padding-bottom: 10px;
+    font-size: 80px;
+    line-height: 1.21;
+  }
+  
+  .error-page__description {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+  
+  .error-page__navigate {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}

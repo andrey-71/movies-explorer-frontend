@@ -1,7 +1,7 @@
 import './Login.css';
 import Authorization from "../Authorization/Authorization";
 
-function Login(props) {
+function Login() {
 
   const namePage = 'login'
   const title = 'Рады видеть!';
@@ -10,10 +10,9 @@ function Login(props) {
   return (
     <section className='login'>
       <Authorization
-        isLogin={props.isLogin}
         namePage={namePage}
         title={title}
-        submitText={submitTextButton}
+        submitTextButton={submitTextButton}
       />
     </section>
   )

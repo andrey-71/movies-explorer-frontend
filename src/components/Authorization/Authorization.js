@@ -57,16 +57,16 @@ function Authorization(props) {
           className='authorization__submit-button'
           type='submit'
           form='authorization-form'>
-          {props.submitText}
+          {props.submitTextButton}
         </button>
         <div className='authorization__link-container'>
           <p className='authorization__link-description'>
-            {props.isRegister && 'Уже зарегистрированы?'}
-            {props.isLogin && 'Ещё не зарегистрированы?'}
+            {props.namePage === 'register' && 'Уже зарегистрированы?'}
+            {props.namePage === 'login' && 'Ещё не зарегистрированы?'}
           </p>
           <a className='authorization__link' href='#'>
-            {props.isRegister && 'Войти'}
-            {props.isLogin && 'Регистрация'}
+            {props.namePage === 'register' && 'Войти'}
+            {props.namePage === 'login' && 'Регистрация'}
           </a>
         </div>
       </div>

@@ -1,18 +1,17 @@
 import './Register.css';
 import Authorization from '../Authorization/Authorization';
 
-function Register(props) {
+function Register() {
   const namePage = 'register'
   const title = 'Добро пожаловать!';
-  const submitTextButton = 'Зарегистрироваться'
+  const submitTextButton = 'Зарегистрироваться';
 
   return (
     <section className='register'>
       <Authorization
-        isRegister={props.isRegister}
         namePage={namePage}
         title={title}
-        submitText={submitTextButton}
+        submitTextButton={submitTextButton}
       />
     </section>
   )

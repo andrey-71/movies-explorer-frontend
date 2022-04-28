@@ -5,8 +5,7 @@ import Navigation from '../Navigation/Navigation';
 import BurgerButton from '../BurgerButton/BurgerButton';
 import MenuBurger from '../MenuBurger/MenuBurger';
 
-function Header() {
-  const isLogged = true; // del
+function Header(props) {
   const [isMenuBurgerActive, setIsMenuBurgerActive] = useState(false);
 
   function handleMenuBurger() {
@@ -14,16 +13,16 @@ function Header() {
   }
 
   return (
-    <header className={isLogged ?
+    <header className={props.isLogged ?
       'header header_type_authorized page__header'
       :
       'header header_type_unauthorized page__header'
     }>
       <Logo />
       <Navigation
-        isLogged={isLogged}
+        isLogged={props.isLogged}
       />
-      {isLogged && <BurgerButton onClick={handleMenuBurger}/>}
+      {props.isLogged && <BurgerButton onClick={handleMenuBurger}/>}
       <MenuBurger isActive={isMenuBurgerActive} />
     </header>
   )

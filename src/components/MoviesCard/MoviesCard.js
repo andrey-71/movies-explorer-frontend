@@ -17,8 +17,8 @@ function MoviesCard(props) {
     const hours = props.duration/60;
     const minutes = props.duration%60;
     let resultDuration = '';
-    if (hours !== 0) { resultDuration += `${parseInt(hours)}ч ` }
-    if (minutes !== 0) { resultDuration += `${minutes}м` }
+    if (parseInt(hours) > 0) { resultDuration += `${parseInt(hours)}ч ` }
+    if (minutes > 0) { resultDuration += `${minutes}м` }
     return resultDuration;
   }
 

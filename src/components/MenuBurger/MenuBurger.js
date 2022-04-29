@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import AccountButton from '../AccountButton/AccountButton';
 
 function MenuBurger(props) {
+  const path = window.location.pathname;
+
   const menuBurgerClassName = props.isActive ?
     'menu-burger menu-burger_active'
     :
@@ -25,14 +27,18 @@ function MenuBurger(props) {
             Главная
           </Link>
           <Link
-            className='menu-burger__link menu-burger__link_active'
+            className={
+              path === '/movies' ? 'menu-burger__link menu-burger__link_active' : 'menu-burger__link'
+            }
             to='/movies'
             onClick={props.onClick}
           >
             Фильмы
           </Link>
           <Link
-            className='menu-burger__link'
+            className={
+              path === '/saved-movies' ? 'menu-burger__link menu-burger__link_active' : 'menu-burger__link'
+            }
             to='/saved-movies'
             onClick={props.onClick}
           >

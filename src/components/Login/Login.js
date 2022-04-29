@@ -2,8 +2,8 @@ import './Login.css';
 import Authorization from "../Authorization/Authorization";
 
 function Login() {
-
-  const namePage = 'login'
+  const namePage = 'signin';
+  const redirectPath = '/signup';
   const title = 'Рады видеть!';
   const submitTextButton = 'Войти'
 
@@ -11,6 +11,7 @@ function Login() {
     <section className='login'>
       <Authorization
         namePage={namePage}
+        redirectPath={redirectPath}
         title={title}
         submitTextButton={submitTextButton}
       />

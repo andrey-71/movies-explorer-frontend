@@ -1,7 +1,10 @@
 import './Authorization.css';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 
 function Authorization(props) {
+  const pathCurrent = window.location.pathname;
+  const navigate = useNavigate();
 
   return (
     <section className='authorization'>
@@ -15,7 +18,7 @@ function Authorization(props) {
           id='authorization-form'
           name={`form-${props.namePage}`}
         >
-          {props.isRegister &&
+          {pathCurrent === '/signup' &&
             <label className='authorization__input-item'>
               <p className='authorization__input-description'>Имя</p>
               <input
@@ -48,7 +51,7 @@ function Authorization(props) {
         </form>
       </div>
       <div
-        className={props.isLogin ?
+        className={pathCurrent === '/signin' ?
           'authorization__footer authorization__footer_login'
           :
           'authorization__footer'}
@@ -56,18 +59,22 @@ function Authorization(props) {
         <button
           className='authorization__submit-button'
           type='submit'
-          form='authorization-form'>
+          form='authorization-form'
+          onClick={() => {
+            navigate('/movies');
+          }}
+        >
           {props.submitTextButton}
         </button>
         <div className='authorization__link-container'>
           <p className='authorization__link-description'>
-            {props.namePage === 'register' && 'Уже зарегистрированы?'}
-            {props.namePage === 'login' && 'Ещё не зарегистрированы?'}
+            {pathCurrent === '/signup' && 'Уже зарегистрированы?'}
+            {pathCurrent === '/signin' && 'Ещё не зарегистрированы?'}
           </p>
-          <a className='authorization__link' href='#'>
-            {props.namePage === 'register' && 'Войти'}
-            {props.namePage === 'login' && 'Регистрация'}
-          </a>
+          <Link className='authorization__link' to={props.redirectPath}>
+            {pathCurrent === '/signup' && 'Войти'}
+            {pathCurrent === '/signin' && 'Регистрация'}
+          </Link>
         </div>
       </div>
     </section>

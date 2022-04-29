@@ -4,15 +4,15 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm() {
 
   return (
-    <section className='search-form'>
-      <div className='search-form__container'>
-        <div className='search-form__search-container'>
-          <div className='search-form__icon' />
-          <input type='text' placeholder='Фильм' className='search-form__input' />
-          <button className='search-form__button'>
-            <span className='search-form__button-icon' />
+    <section className='search'>
+      <div className='search__container'>
+        <form className='search__form' name='form-search'>
+          <div className='search__icon' />
+          <input type='text' placeholder='Фильм' className='search__input' />
+          <button className='search__button' type='submit'>
+            <span className='search__button-icon' />
           </button>
-        </div>
+        </form>
         <FilterCheckbox description='Короткометражки' />
       </div>
     </section>

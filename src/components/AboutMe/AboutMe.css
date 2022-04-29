@@ -83,7 +83,7 @@
   -o-text-overflow: ellipsis;
 }
 
-.about-me__links-social {
+.about-me__link-social {
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -102,11 +102,11 @@
   transition: opacity .3s;
 }
 
-.about-me__links-social:hover {
+.about-me__link-social:hover {
   opacity: .7;
 }
 
-.about-me__links-social:not(:last-of-type) {
+.about-me__link-social:not(:last-of-type) {
   padding-right: 20px;
 }
 
@@ -186,7 +186,7 @@
     line-height: 1.45;
   }
   
-  .about-me__links-social:not(:last-of-type) {
+  .about-me__link-social:not(:last-of-type) {
     padding-right: 26px;
   }
 }

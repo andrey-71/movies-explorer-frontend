@@ -15,6 +15,10 @@ import { moviesList, savedMoviesList } from '../../utils/config';
 function App() {
   const [isLogged, setIsLogged] = useState(false);
 
+  function handleLogin() {
+    setIsLogged(!isLogged);
+  }
+
   return (
     <div className='page'>
       <Routes>
@@ -48,7 +52,7 @@ function App() {
         {/*Фильмы*/}
         <Route path='/movies' element={
           <>
-            <Header isLogged={!isLogged} />
+            <Header isLogged={!isLogged} /> {/*Временное решение*/}
             <main className='content page__content'>
               <Movies
                 movies={moviesList}
@@ -61,7 +65,7 @@ function App() {
         {/*Сохраненные фильмы*/}
         <Route path='/saved-movies' element={
           <>
-            <Header isLogged={!isLogged} />
+            <Header isLogged={!isLogged} /> {/*Временное решение*/}
             <main className='content page__content'>
               <SavedMovies
                 movies={savedMoviesList}
@@ -74,7 +78,7 @@ function App() {
         {/*Профиль*/}
         <Route path='/profile' element={
           <>
-            <Header isLogged={!isLogged} />
+            <Header isLogged={!isLogged} /> {/*Временное решение*/}
             <main className='content page__content'>
               <Profile />
             </main>

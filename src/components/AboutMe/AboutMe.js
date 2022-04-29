@@ -19,14 +19,14 @@ function AboutMe() {
             фриланс-заказами и ушёл с постоянной работы.
           </p>
           <a
-            className='about-me__links-social'
-            href='https://www.facebook.com/'
+            className='about-me__link-social'
+            href='https://rkn.gov.ru'
             target='_blank'
           >
             Facebook
           </a>
           <a
-            className='about-me__links-social'
+            className='about-me__link-social'
             href='https://github.com/andrey-71'
             target='_blank'
           >

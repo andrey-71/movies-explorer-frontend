@@ -1,6 +1,8 @@
 import './Profile.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Profile() {
+  const history = useNavigate();
 
   return (
     <section className='profile'>
@@ -25,9 +27,13 @@ function Profile() {
         />
         <span className='profile__input-error'>span</span>
       </label>
-        <button type='submit' className='profile__submit-button'>Редактировать</button>
+        <button className='profile__submit-button' type='submit' onClick={() => {
+          history('/movies');
+        }}>
+          Редактировать
+        </button>
       </form>
-      <a href='#' className='profile__link-signout'>Выйти из аккаунта</a>
+      <Link className='profile__link-signout' to='/'>Выйти из аккаунта</Link>
     </section>
   )
 }

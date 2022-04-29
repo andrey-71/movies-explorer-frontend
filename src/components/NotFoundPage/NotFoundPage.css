@@ -45,11 +45,13 @@
   text-align: center;
 }
 
-.error-page__navigate {
+.error-page__back-button {
   position: absolute;
   top: calc(50vh + 240px);
   left: auto;
-  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border: none;
+  background-color: inherit;
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -61,21 +63,22 @@
   text-rendering: optimizeLegibility;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
-  text-decoration: none;
   color: #3456f3;
   cursor: pointer;
   transition: .3s;
 }
 
-.error-page__navigate:hover {
+.error-page__back-button:hover {
   opacity: .7;
 }
 
 @media screen and (max-width: 767px) {
-  .error-page__navigate {
+  .error-page__back-button {
     top: auto;
     bottom: 30px;
-    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    line-height: 1.25;
   }
   
   .error-page__title {
@@ -85,11 +88,6 @@
   }
   
   .error-page__description {
-    font-size: 12px;
-    line-height: 1.25;
-  }
-  
-  .error-page__navigate {
     font-size: 12px;
     line-height: 1.25;
   }

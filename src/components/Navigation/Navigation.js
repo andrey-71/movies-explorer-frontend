@@ -1,4 +1,5 @@
 import './Navigation.css';
+import { Link } from 'react-router-dom';
 
 function Navigation(props) {
 
@@ -7,17 +8,17 @@ function Navigation(props) {
       {props.isLogged ?
         <div className='navigation__authorized'>
           <div>
-            <a href='#' className='navigation__link navigation__link_type_films'>Фильмы</a>
-            <a href='#' className='navigation__link navigation__link_type_save-films'>Сохранённые фильмы</a>
+            <Link className='navigation__link navigation__link_type_films' to='/movies'>Фильмы</Link>
+            <Link className='navigation__link navigation__link_type_save-films' to='/saved-movies'>Сохранённые фильмы</Link>
           </div>
           <div>
-            <button className='navigation__account-button'>Аккаунт</button>
+            <Link className='navigation__account-button' to='/profile'>Аккаунт</Link>
           </div>
         </div>
         :
         <div className='navigation__unauthorized'>
-          <a href='#' className='navigation__link navigation__link_type_singup'>Регистрация</a>
-          <button className='navigation__signin-button'>Войти</button>
+          <Link className='navigation__link navigation__link_type_singup' to='/signup'>Регистрация</Link>
+          <Link className='navigation__link navigation__link_type_signin' to='/signin'>Войти</Link>
         </div>
       }
     </nav>

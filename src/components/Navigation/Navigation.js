@@ -1,5 +1,6 @@
 import './Navigation.css';
 import { Link } from 'react-router-dom';
+import AccountButton from "../AccountButton/AccountButton";
 
 function Navigation(props) {
 
@@ -12,7 +13,7 @@ function Navigation(props) {
             <Link className='navigation__link navigation__link_type_save-films' to='/saved-movies'>Сохранённые фильмы</Link>
           </div>
           <div>
-            <Link className='navigation__account-button' to='/profile'>Аккаунт</Link>
+            <AccountButton />
           </div>
         </div>
         :

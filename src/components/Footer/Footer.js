@@ -29,7 +29,7 @@ function Footer() {
           <li className='footer__link-item'>
             <a
               className='footer__link'
-              href='https://www.facebook.com/'
+              href='https://rkn.gov.ru'
               target='_blank'
             >
               Facebook

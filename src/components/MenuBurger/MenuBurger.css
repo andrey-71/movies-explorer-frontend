@@ -43,24 +43,9 @@
     align-items: center;
     padding-top: 144px;
   }
-
-  .menu-burger__title {
-    margin: 0 0 28px;
-    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 1.22;
-    text-rendering: optimizeLegibility;
-    text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-  }
   
   .menu-burger__link {
+    margin-bottom: 28px;
     font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -78,70 +63,30 @@
     text-decoration: none;
     transition: opacity .3s;
   }
-  
-  .menu-burger__link:not(:last-child) {
-    margin-bottom: 28px;
-  }
 
   .menu-burger__link:hover {
     opacity: .7;
   }
 
   .menu-burger__link_active {
-    border-bottom: 2px solid #000;
-    padding-bottom: 4px;
-  }
-
-  .menu-burger__link_active:not(:last-child) {
     margin-bottom: 22px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #000;
   }
   
-  .menu-burger__account-button {
-    width: 100px;
-    height: 32px;
+  .menu-burger__account-button-container {
     margin-bottom: 54px;
-    padding: 0;
-    background-color: #f4f4f4;
-    border: 1px solid #f4f4f4;
-    border-radius: 20px;
-    cursor: pointer;
-    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.14;
-    text-rendering: optimizeLegibility;
-    text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    transition: .3s;
-  }
-
-  .menu-burger__account-button:hover {
-    border: 1px solid #ccc;
-    opacity: .8;
   }
 }
 
 @media screen and (max-width:480px) {
-  .menu-burger__title {
-    margin: 0 0 24px;
-  }
-
-  .menu-burger__link:not(:last-child) {
+  .menu-burger__link {
     margin-bottom: 24px;
   }
 
   .menu-burger__link_active {
-    border-bottom: 2px solid #000;
-    padding-bottom: 7px;
-  }
-
-  .menu-burger__link_active:not(:last-child) {
     margin-bottom: 15px;
+    padding-bottom: 7px;
   }
 }
 

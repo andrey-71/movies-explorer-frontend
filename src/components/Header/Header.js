@@ -22,8 +22,16 @@ function Header(props) {
       <Navigation
         isLogged={props.isLogged}
       />
-      {props.isLogged && <BurgerButton onClick={handleMenuBurger}/>}
-      <MenuBurger isActive={isMenuBurgerActive} />
+      {props.isLogged &&
+        <BurgerButton
+          isMenuBurgerActive={isMenuBurgerActive}
+          onClick={handleMenuBurger}
+        />
+      }
+      <MenuBurger
+        isActive={isMenuBurgerActive}
+        onClick={handleMenuBurger}
+      />
     </header>
   )
 }

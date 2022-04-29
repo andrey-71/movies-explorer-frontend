@@ -4,10 +4,12 @@ function BurgerButton(props) {
 
   return(
     <div className='burger'>
-      <input id='burger__toggle' className='burger__toggle' type='checkbox' />
       <label
-        className='burger__button'
-        htmlFor='burger__toggle'
+        className={props.isMenuBurgerActive ?
+          'burger__button burger__button_active'
+          :
+          'burger__button'
+      }
         onClick={props.onClick}
       >
         <span className='burger__button-item' />

@@ -16,15 +16,15 @@
 }
 
 .navigation__link {
-  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  padding-right: 16px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
+  font-size: 13px;
+  line-height: 1.38;
   text-rendering: optimizeLegibility;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
@@ -38,31 +38,30 @@
   opacity: .7;
 }
 
+.navigation__link_active {
+  font-weight: 500;
+}
+
 .navigation__link_type_singup {
   padding-right: 30px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
 }
 
 .navigation__link_type_signin {
+  padding-right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 76px;
   height: 32px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
   background-color: #3456f3;
   border-radius: 3px;
   color: #fff;
-}
-
-.navigation__link_type_films {
-  padding-right: 16px;
-  font-size: 13px;
-  line-height: 1.38;
-}
-
-.navigation__link_type_save-films {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.38;
 }
 
 @media screen and (max-width:768px) {

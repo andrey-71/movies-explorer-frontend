@@ -3,14 +3,25 @@ import { Link } from 'react-router-dom';
 import AccountButton from "../AccountButton/AccountButton";
 
 function Navigation(props) {
+  const path = window.location.pathname;
 
   return (
     <nav className='navigation'>
       {props.isLogged ?
         <div className='navigation__authorized'>
           <div>
-            <Link className='navigation__link navigation__link_type_films' to='/movies'>Фильмы</Link>
-            <Link className='navigation__link navigation__link_type_save-films' to='/saved-movies'>Сохранённые фильмы</Link>
+            <Link
+              className={path === '/movies' ? 'navigation__link navigation__link_active' : 'navigation__link'}
+              to='/movies'
+            >
+              Фильмы
+            </Link>
+            <Link
+              className={path === '/saved-movies' ? 'navigation__link navigation__link_active' : 'navigation__link'}
+              to='/saved-movies'
+            >
+              Сохранённые фильмы
+            </Link>
           </div>
           <div>
             <AccountButton />

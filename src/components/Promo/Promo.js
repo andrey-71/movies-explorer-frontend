@@ -18,7 +18,7 @@ function Promo() {
           alt='Земной шар с континетами из надписей web'
         />
       </div>
-      <button className='promo__button'>Узнать больше</button>
+      <a href='#about-project' className='promo__link'>Узнать больше</a>
     </section>
   )
 }

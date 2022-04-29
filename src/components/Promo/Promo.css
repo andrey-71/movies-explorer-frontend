@@ -61,10 +61,14 @@
   height: 100%;
 }
 
-.promo__button {
-  padding: 0;
+.promo__link {
   width: 129px;
   height: 36px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -77,14 +81,16 @@
   text-rendering: optimizeLegibility;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
+  color: #000;
   border: 1px solid #000;
   background-color: transparent;
   border-radius: 3px;
+  text-decoration: none;
   cursor: pointer;
   transition: opacity .3s;
 }
 
-.promo__button:hover {
+.promo__link:hover {
   opacity: .6;
 }
 
@@ -129,8 +135,7 @@
     text-align: center;
   }
   
-  .promo__button {
-    display: block;
+  .promo__link {
     margin: 0 auto;
   }
 }

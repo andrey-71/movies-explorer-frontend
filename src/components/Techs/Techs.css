@@ -121,6 +121,7 @@
 @media screen and (max-width: 480px) {
   .techs {
     padding: 70px 18px;
+    background-color: inherit;
   }
   
   .techs__title {

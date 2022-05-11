@@ -10,7 +10,7 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Footer from '../Footer/Footer';
-import { moviesList, savedMoviesList } from '../../utils/config';
+import { savedMoviesList } from '../../utils/config';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -54,9 +54,7 @@ function App() {
           <>
             <Header isLogged={!isLogged} /> {/*Временное решение*/}
             <main className='content page__content'>
-              <Movies
-                movies={moviesList}
-              />
+              <Movies />
             </main>
             <Footer />
           </>

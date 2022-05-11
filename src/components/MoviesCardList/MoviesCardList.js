@@ -6,7 +6,7 @@ function MoviesCardList(props) {
 
   return (
     <section className='cards'>
-      {props.movies.length !== 0 && props.movies.map(movie => {
+      {props.movies.map(movie => {
         return (
           <MoviesCard
             key={movie.id}

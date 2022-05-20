@@ -1,6 +1,7 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
+
 function MoviesCardList(props) {
   const baseUrl = 'https://api.nomoreparties.co/';
 

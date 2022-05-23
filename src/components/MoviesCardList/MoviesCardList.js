@@ -1,19 +1,19 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import { serverUrl } from '../../utils/config';
 
 
 function MoviesCardList(props) {
-  const baseUrl = 'https://api.nomoreparties.co/';
 
   return (
     <section className='cards'>
-      {props.movies.map(movie => {
+      {props.movies && props.movies.map(movie => {
         return (
           <MoviesCard
             key={movie.id}
             name={movie.nameRU}
             duration={movie.duration}
-            imageUrl={baseUrl + movie.image.url}
+            imageUrl={serverUrl.imageMovies + movie.image.url}
             isPageSavedMovies={props.isPageSavedMovies}
           />
         )

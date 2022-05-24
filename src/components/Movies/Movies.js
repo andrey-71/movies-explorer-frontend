@@ -36,8 +36,6 @@ function Movies() {
     }
   }, [foundMovies, renderInitialCardNumber]);
 
-  console.log(isFilterShortMovies);
-
   // Установка обработчика отслеживания размеров экрана
   useEffect(() => {
     window.addEventListener("resize", () => setTimeout(handleScreenWidth, 500));
@@ -55,10 +53,12 @@ function Movies() {
         .finally(() => {
           setRenderMovies(JSON.parse(localStorage.getItem('renderMovies')));
           setFoundMovies(JSON.parse(localStorage.getItem('foundMovies')));
+          setDataSearch(localStorage.getItem('dataSearch'));
           setIsFilterShortMovies(JSON.parse(localStorage.getItem('filterShortMovies')));
           setIsPreloader(false);
         });
   }, []);
+  console.log(dataSearch);
 
   // Функция добавления фильмов при нажатии кнопки ещё из списка результатов поиска
   function handleAddMovies() {
@@ -89,12 +89,15 @@ function Movies() {
             foundMoviesList.indexOf(movie) < renderInitialCardNumber && renderMoviesList.push(movie);
           })
           localStorage.setItem('renderMovies', JSON.stringify(renderMoviesList));
+          // Обновление состояние кнопки при каждом поиске
           foundMoviesList.length >= renderInitialCardNumber ?
             setIsAddButton(true) : setIsAddButton(false);
           // Запись в стейт найденных и отрендеринных фильмов
           setFoundMovies(foundMoviesList);
           setRenderMovies(renderMoviesList);
         } else {
+          setRenderMovies([]);
+          localStorage.removeItem('renderMovies');
           console.log('Ничего не найдено');
         }
       }
@@ -106,7 +109,7 @@ function Movies() {
     }
   }
 
-  // Функция установки количества отрисовываемых карточек в зависимости от разрешения
+  // Функция установки количества отрисовываемых карточек в зависимости от размера экрана
   function handleScreenWidth() {
     if (document.documentElement.scrollWidth >= 1280) {
       setRenderInitialCardNumber(9);

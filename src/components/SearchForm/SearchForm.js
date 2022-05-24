@@ -6,6 +6,7 @@ function SearchForm(props) {
   // Обработчики изменения инпута
   function handleChangeDataSearch(evt) {
     props.setDataSearch(evt.target.value);
+    localStorage.setItem('dataSearch', evt.target.value);
   }
 
   return (
@@ -20,7 +21,7 @@ function SearchForm(props) {
             placeholder='Фильм'
             className='search__input'
             name='dataSearch'
-            value={props.dataSearch}
+            value={props.dataSearch ?? ''}
             onChange={handleChangeDataSearch}
           />
           <button className='search__button' type='submit'>

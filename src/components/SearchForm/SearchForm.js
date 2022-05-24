@@ -2,6 +2,7 @@ import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm(props) {
+
   // Обработчики изменения инпута
   function handleChangeDataSearch(evt) {
     props.setDataSearch(evt.target.value);
@@ -26,7 +27,11 @@ function SearchForm(props) {
             <span className='search__button-icon' />
           </button>
         </form>
-        <FilterCheckbox description='Короткометражки' />
+        <FilterCheckbox
+          description='Короткометражки'
+          isFilterShortMovies={props.isFilterShortMovies}
+          setIsFilterShortMovies={props.setIsFilterShortMovies}
+        />
       </div>
     </section>
   )

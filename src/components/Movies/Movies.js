@@ -22,14 +22,11 @@ function Movies() {
   // Прелоадер
   const [isPreloader, setIsPreloader] = useState(false);
   // Фильтр короткометражек
-  // const [isFilterShortMovies, setIsFilterShortMovies] = useState(false);
+  const [isFilterShortMovies, setIsFilterShortMovies] = useState(false);
 
-  // Установка кол-ва отрисовываемых (добавляемых) карточек в зависимости от ширины экрана
+    // Установка кол-ва отрисовываемых (добавляемых) карточек в зависимости от ширины экрана
   useEffect(() => {
     handleScreenWidth();
-    setRenderMovies(JSON.parse(localStorage.getItem('renderMovies')));
-    setFoundMovies(JSON.parse(localStorage.getItem('foundMovies')));
-    // setIsFilterShortMovies(JSON.parse(localStorage.getItem('filterShortMovies')));
   }, []);
 
   // Установка начального состояния кнопки "Ещё"
@@ -39,10 +36,7 @@ function Movies() {
     }
   }, [foundMovies, renderInitialCardNumber]);
 
-  // Запись состояния фильтров короткометражек в localStorage
-  // useEffect(() => {
-  //   localStorage.setItem('filterShortMovies', JSON.stringify(isFilterShortMovies));
-  // }, [isFilterShortMovies]);
+  console.log(isFilterShortMovies);
 
   // Установка обработчика отслеживания размеров экрана
   useEffect(() => {
@@ -50,7 +44,7 @@ function Movies() {
     return () => window.removeEventListener("resize", () => setTimeout(handleScreenWidth, 500));
   }, [renderInitialCardNumber, renderMoreCardNumber]);
 
-  // Загрузка вех карточек
+  // Загрузка всех карточек, запись данных из localStorage
   useEffect(() => {
     setIsPreloader(true);
       moviesApi.getMovies()
@@ -58,7 +52,12 @@ function Movies() {
           setAllMovies(movies);
         })
         .catch(err => console.log(err))
-        .finally(() => setIsPreloader(false));
+        .finally(() => {
+          setRenderMovies(JSON.parse(localStorage.getItem('renderMovies')));
+          setFoundMovies(JSON.parse(localStorage.getItem('foundMovies')));
+          setIsFilterShortMovies(JSON.parse(localStorage.getItem('filterShortMovies')));
+          setIsPreloader(false);
+        });
   }, []);
 
   // Функция добавления фильмов при нажатии кнопки ещё из списка результатов поиска
@@ -129,6 +128,8 @@ function Movies() {
         onClick={searchMovies}
         dataSearch={dataSearch}
         setDataSearch={setDataSearch}
+        isFilterShortMovies={isFilterShortMovies}
+        setIsFilterShortMovies={setIsFilterShortMovies}
       />
       <MoviesCardList
         movies={renderMovies}

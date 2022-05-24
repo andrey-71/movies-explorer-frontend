@@ -14,7 +14,7 @@ function AddMovies(props) {
           Ещё
         </button>
       </section>
-      <Preloader isPreloaderVisible={props.isPreloaderVisible}/>
+      <Preloader isPreloaderVisible={props.isPreloaderVisible} />
     </>
 
   )

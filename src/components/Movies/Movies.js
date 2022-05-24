@@ -21,18 +21,28 @@ function Movies() {
   const [isAddButton, setIsAddButton] = useState(false);
   // Прелоадер
   const [isPreloader, setIsPreloader] = useState(false);
+  // Фильтр короткометражек
+  // const [isFilterShortMovies, setIsFilterShortMovies] = useState(false);
 
   // Установка кол-ва отрисовываемых (добавляемых) карточек в зависимости от ширины экрана
   useEffect(() => {
     handleScreenWidth();
     setRenderMovies(JSON.parse(localStorage.getItem('renderMovies')));
     setFoundMovies(JSON.parse(localStorage.getItem('foundMovies')));
-    // if (foundMovies && foundMovies.length >= renderInitialCardNumber) {
-    //   console.log(new Boolean(renderInitialCardNumber));
-    //   console.log(new Boolean(foundMovies));
-    //   setIsAddButton(true);
-    // }
+    // setIsFilterShortMovies(JSON.parse(localStorage.getItem('filterShortMovies')));
   }, []);
+
+  // Установка начального состояния кнопки "Ещё"
+  useEffect(() => {
+    if (foundMovies && foundMovies.length > 0 && foundMovies.length >= renderInitialCardNumber) {
+      setIsAddButton(true);
+    }
+  }, [foundMovies, renderInitialCardNumber]);
+
+  // Запись состояния фильтров короткометражек в localStorage
+  // useEffect(() => {
+  //   localStorage.setItem('filterShortMovies', JSON.stringify(isFilterShortMovies));
+  // }, [isFilterShortMovies]);
 
   // Установка обработчика отслеживания размеров экрана
   useEffect(() => {
@@ -72,15 +82,16 @@ function Movies() {
       try {
         // Обработка результатов поиска
         const foundMoviesList = allMovies.filter(movie => movie.nameRU.toLowerCase().indexOf(dataSearch.toLowerCase()) >= 0);
-        localStorage.setItem('foundMovies', (JSON.stringify(foundMoviesList)));
+        localStorage.setItem('foundMovies', JSON.stringify(foundMoviesList));
         // Рендеринг карточек фильмов
         const renderMoviesList = [];
         if (foundMoviesList.length !== 0) {
           foundMoviesList.map(movie => {
             foundMoviesList.indexOf(movie) < renderInitialCardNumber && renderMoviesList.push(movie);
           })
-          localStorage.setItem('renderMovies', (JSON.stringify(renderMoviesList)));
-          foundMoviesList.length >= renderInitialCardNumber && setIsAddButton(true);
+          localStorage.setItem('renderMovies', JSON.stringify(renderMoviesList));
+          foundMoviesList.length >= renderInitialCardNumber ?
+            setIsAddButton(true) : setIsAddButton(false);
           // Запись в стейт найденных и отрендеринных фильмов
           setFoundMovies(foundMoviesList);
           setRenderMovies(renderMoviesList);

@@ -15,7 +15,7 @@ function FilterCheckbox(props) {
           type='checkbox'
           id='filterCheckbox'
           className='filter-checkbox__checkbox'
-          checked={props.isFilterShortMovies}
+          checked={props.isFilterShortMovies !== null && props.isFilterShortMovies}
           onChange={handleFilterShortMoviesState}
         />
         <span className='filter-checkbox__custom-checkbox'>

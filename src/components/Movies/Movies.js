@@ -58,7 +58,6 @@ function Movies() {
           setIsPreloader(false);
         });
   }, []);
-  console.log(dataSearch);
 
   // Функция добавления фильмов при нажатии кнопки ещё из списка результатов поиска
   function handleAddMovies() {

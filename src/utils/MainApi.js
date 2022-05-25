@@ -43,6 +43,17 @@ class MainApi {
       .then(res => this._handleResult(res))
   }
 
+  // Запрос данных пользователя
+  getUserData(id) {
+    return fetch(`${this._serverUrl}/users/me`, {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${id}`
+      }
+    })
+      .then(res => this._handleResult(res));
+  }
 
   // Обработчик запроса
   _handleResult(res) {

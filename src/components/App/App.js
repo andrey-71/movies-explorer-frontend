@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from "react";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -14,8 +15,11 @@ import { savedMoviesList } from '../../utils/config';
 import mainApi from "../../utils/MainApi";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
+  // Состояние авторизации
+  const [isLogged, setIsLogged] = useState(false);
+  // Данные пользователя
+  const [currentUser, setCurrentUser] = useState({});
 
   // Регистрация пользователя
   function handleRegister(userData) {
@@ -31,7 +35,7 @@ function App() {
   function handleLogin(userData) {
     mainApi.login(userData)
       .then(user => {
-        console.log(user._id);
+        getUserData(user._id);
         localStorage.setItem('idUser', user._id);
         setIsLogged(true);
         navigate('/movies');
@@ -45,89 +49,99 @@ function App() {
     mainApi.logout()
       .then(() => {
         localStorage.removeItem('idUser');
-        localStorage.removeItem('dataSearch');
-        localStorage.removeItem('filterShortMovies');
         localStorage.removeItem('foundMovies');
         localStorage.removeItem('renderMovies');
+        localStorage.removeItem('dataSearch');
+        localStorage.removeItem('filterShortMovies');
         navigate('/');
       })
       .catch(err => console.log(`При выходе из учетной записи произошла ошибка: ${err}`))
   }
   // --- !!!
 
+  // Получение данных пользователя
+  function getUserData(id) {
+    mainApi.getUserData(id)
+      .then(userData => {
+        setCurrentUser(userData);
+      })
+      .catch(err => console.log(`При загрузке данных пользователя произошла ошибка: ${err}`))
+  }
+
   return (
-    <div className='page'>
-      <Routes>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className='page'>
+        <Routes>
 
-        {/*О проекте*/}
-        <Route path='/' element={
-          <>
-            <Header isLogged={isLogged} />
+          {/*О проекте*/}
+          <Route path='/' element={
+            <>
+              <Header isLogged={isLogged} />
+              <main className='content page__content'>
+                <Main />
+              </main>
+              <Footer />
+            </>
+
+          } />
+
+          {/*Регистрация*/}
+          <Route path='/signup' element={
             <main className='content page__content'>
-              <Main />
+              <Register onRegister={handleRegister} />
             </main>
-            <Footer />
-          </>
+          } />
 
-        } />
-
-        {/*Регистрация*/}
-        <Route path='/signup' element={
-          <main className='content page__content'>
-            <Register onRegister={handleRegister} />
-          </main>
-        } />
-
-        {/*Авторизация*/}
-        <Route path='/signin' element={
-          <main className='content page__content'>
-            <Login onLogin={handleLogin} />
-          </main>
-        } />
-
-        {/*Фильмы*/}
-        <Route path='/movies' element={
-          <>
-            <Header isLogged={isLogged} />
+          {/*Авторизация*/}
+          <Route path='/signin' element={
             <main className='content page__content'>
-              <Movies />
+              <Login onLogin={handleLogin} />
             </main>
-            <Footer />
-          </>
-        } />
+          } />
 
-        {/*Сохраненные фильмы*/}
-        <Route path='/saved-movies' element={
-          <>
-            <Header isLogged={isLogged} />
+          {/*Фильмы*/}
+          <Route path='/movies' element={
+            <>
+              <Header isLogged={isLogged} />
+              <main className='content page__content'>
+                <Movies />
+              </main>
+              <Footer />
+            </>
+          } />
+
+          {/*Сохраненные фильмы*/}
+          <Route path='/saved-movies' element={
+            <>
+              <Header isLogged={isLogged} />
+              <main className='content page__content'>
+                <SavedMovies
+                  movies={savedMoviesList}
+                />
+              </main>
+              <Footer />
+            </>
+          } />
+
+          {/*Профиль*/}
+          <Route path='/profile' element={
+            <>
+              <Header isLogged={isLogged} />
+              <main className='content page__content'>
+                <Profile onLogout={handleLogout} />
+              </main>
+            </>
+          } />
+
+          {/*404 Страница не найдена*/}
+          <Route path='*' element={
             <main className='content page__content'>
-              <SavedMovies
-                movies={savedMoviesList}
-              />
+              <NotFoundPage />
             </main>
-            <Footer />
-          </>
-        } />
-
-        {/*Профиль*/}
-        <Route path='/profile' element={
-          <>
-            <Header isLogged={isLogged} />
-            <main className='content page__content'>
-              <Profile onLogout={handleLogout} />
-            </main>
-          </>
-        } />
-
-        {/*404 Страница не найдена*/}
-        <Route path='*' element={
-          <main className='content page__content'>
-            <NotFoundPage />
-          </main>
-        } />
-
-      </Routes>
-    </div>
+          } />
+        </Routes>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

@@ -25,6 +25,8 @@ function Authorization(props) {
                 type='text'
                 name={`name-${props.namePage}`}
                 placeholder='Введите имя'
+                value={props.isName}
+                onChange={props.onName}
               />
             </label>
           }

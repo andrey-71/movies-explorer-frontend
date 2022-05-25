@@ -6,6 +6,20 @@ class MainApi {
     this._headers = options.headers;
   }
 
+  // Регистрация пользователя
+  register(data) {
+    return fetch(`${this._serverUrl}/signup`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        password: data.password
+      })
+    })
+      .then(res => this._handleResult(res))
+  }
+
   // Авторизация пользователя
   login(data) {
     return fetch(`${this._serverUrl}/signin`, {

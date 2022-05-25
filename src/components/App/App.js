@@ -17,6 +17,16 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
 
+  // Регистрация пользователя
+  function handleRegister(userData) {
+    mainApi.register(userData)
+      .then(user => {
+        console.log(user);
+        navigate('/signin');
+      })
+      .catch(err => console.log(`При регистрации произошла ошибка: ${err}`));
+  }
+
   // Авторизация пользователя
   function handleLogin(userData) {
     mainApi.login(userData)
@@ -26,7 +36,7 @@ function App() {
         setIsLogged(true);
         navigate('/movies');
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(`При авторизации произошла ошибка: ${err}`))
   }
 
   return (
@@ -48,7 +58,9 @@ function App() {
         {/*Регистрация*/}
         <Route path='/signup' element={
           <main className='content page__content'>
-            <Register />
+            <Register
+              onRegister={handleRegister}
+            />
           </main>
         } />
 

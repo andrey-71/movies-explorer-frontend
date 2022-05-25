@@ -34,6 +34,15 @@ class MainApi {
       .then(res => this._handleResult(res))
   }
 
+  // Выход из учетной записи
+  logout() {
+    return fetch(`${this._serverUrl}/users/signout`, {
+      credentials: 'include',
+      headers: this._headers
+    })
+      .then(res => this._handleResult(res))
+  }
+
 
   // Обработчик запроса
   _handleResult(res) {

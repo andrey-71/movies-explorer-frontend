@@ -1,7 +1,7 @@
 import './Profile.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Profile() {
+function Profile(props) {
   const history = useNavigate();
 
   return (
@@ -33,7 +33,9 @@ function Profile() {
           Редактировать
         </button>
       </form>
-      <Link className='profile__link-signout' to='/'>Выйти из аккаунта</Link>
+      <Link className='profile__link-signout' to='#' onClick={props.onLogout}>
+        Выйти из аккаунта
+      </Link>
     </section>
   )
 }

@@ -39,6 +39,22 @@ function App() {
       .catch(err => console.log(`При авторизации произошла ошибка: ${err}`))
   }
 
+  // --- !!! Проверить после полной настройки авторизации
+  // Выход из учетной записи
+  function handleLogout() {
+    mainApi.logout()
+      .then(() => {
+        localStorage.removeItem('idUser');
+        localStorage.removeItem('dataSearch');
+        localStorage.removeItem('filterShortMovies');
+        localStorage.removeItem('foundMovies');
+        localStorage.removeItem('renderMovies');
+        navigate('/');
+      })
+      .catch(err => console.log(`При выходе из учетной записи произошла ошибка: ${err}`))
+  }
+  // --- !!!
+
   return (
     <div className='page'>
       <Routes>
@@ -58,18 +74,14 @@ function App() {
         {/*Регистрация*/}
         <Route path='/signup' element={
           <main className='content page__content'>
-            <Register
-              onRegister={handleRegister}
-            />
+            <Register onRegister={handleRegister} />
           </main>
         } />
 
         {/*Авторизация*/}
         <Route path='/signin' element={
           <main className='content page__content'>
-            <Login
-              onLogin={handleLogin}
-            />
+            <Login onLogin={handleLogin} />
           </main>
         } />
 
@@ -102,7 +114,7 @@ function App() {
           <>
             <Header isLogged={isLogged} />
             <main className='content page__content'>
-              <Profile />
+              <Profile onLogout={handleLogout} />
             </main>
           </>
         } />

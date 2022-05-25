@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from "react";
-import { Routes, Route } from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -11,12 +11,23 @@ import Login from "../Login/Login";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Footer from '../Footer/Footer';
 import { savedMoviesList } from '../../utils/config';
+import mainApi from "../../utils/MainApi";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
 
+  // Авторизация пользователя
   function handleLogin() {
-    setIsLogged(!isLogged);
+    mainApi.login({email: 'email@email.ru', password: '1'})
+      .then(user => {
+        console.log(user);
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        setIsLogged(!isLogged);
+        navigate('/movies');
+      })
   }
 
   return (
@@ -45,7 +56,9 @@ function App() {
         {/*Авторизация*/}
         <Route path='/signin' element={
           <main className='content page__content'>
-            <Login />
+            <Login
+              onLogin={handleLogin}
+            />
           </main>
         } />
 

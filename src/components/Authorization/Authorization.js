@@ -1,10 +1,9 @@
 import './Authorization.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 
 function Authorization(props) {
   const pathCurrent = window.location.pathname;
-  const navigate = useNavigate();
 
   return (
     <section className='authorization'>
@@ -60,9 +59,7 @@ function Authorization(props) {
           className='authorization__submit-button'
           type='submit'
           form='authorization-form'
-          onClick={() => {
-            navigate('/movies');
-          }}
+          onClick={props.onClick}
         >
           {props.submitTextButton}
         </button>

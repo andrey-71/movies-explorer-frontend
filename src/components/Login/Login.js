@@ -7,11 +7,6 @@ function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const namePage = 'signin';
-  const redirectPath = '/signup';
-  const title = 'Рады видеть!';
-  const submitTextButton = 'Войти'
-
   // Функции обработки изменения инпутов
   function handleChangeEmail(evt) {
     setEmail(evt.target.value);
@@ -29,10 +24,10 @@ function Login(props) {
   return (
     <section className='login'>
       <Authorization
-        namePage={namePage}
-        redirectPath={redirectPath}
-        title={title}
-        submitTextButton={submitTextButton}
+        namePage='signin'
+        redirectPath='/signup'
+        title='Рады видеть!'
+        submitTextButton='Войти'
         isEmail={email}
         isPassword={password}
         onEmail={handleChangeEmail}

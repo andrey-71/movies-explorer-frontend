@@ -4,7 +4,7 @@ import { serverUrl } from '../../utils/config';
 
 
 function MoviesCardList(props) {
-
+  
   return (
     <section className='cards'>
       {props.movies && props.movies.map(movie => {
@@ -14,6 +14,7 @@ function MoviesCardList(props) {
             name={movie.nameRU}
             duration={movie.duration}
             imageUrl={serverUrl.imageMovies + movie.image.url}
+            trailerUrl={movie.trailerLink}
             isPageSavedMovies={props.isPageSavedMovies}
           />
         )

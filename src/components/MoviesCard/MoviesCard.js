@@ -9,10 +9,13 @@ function MoviesCard(props) {
     'card__saved-button card__saved-button_type_movies card__saved-button_active';
   const buttonSavedMoviesClassName = 'card__saved-button card__saved-button_type_saved-movies';
 
-  function handleSavedFilm() {
+  // Функция сохранения фильмов
+  function handleSavedMovie(evt) {
+    evt.stopPropagation();
     return setIsSaved(!isSaved);
   }
 
+  // Функция для перевода времени
   function calcDuration() {
     const hours = props.duration/60;
     const minutes = props.duration%60;
@@ -26,13 +29,14 @@ function MoviesCard(props) {
 
   return (
     <article className='card'>
+      <a className='card__container' href={props.trailerUrl} target='_blank' />
       <div className='card__container-info'>
         <h2 className='card__title'>{props.name}</h2>
         <p className='card__duration'>{durationMovies}</p>
         {!props.isPageSavedMovies ?
           <button
             className={buttonMoviesClassName}
-            onClick={handleSavedFilm}
+            onClick={handleSavedMovie}
           />
           :
           <button

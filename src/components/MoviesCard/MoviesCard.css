@@ -1,7 +1,18 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #fff;
+}
+
+.card__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  outline: 1px solid red;
+  width: 100%;
+  min-height: 100%;
+  text-decoration: none;
 }
 
 .card__container-info {
@@ -60,6 +71,7 @@
   border-radius: 36px;
   cursor: pointer;
   transition: .3s;
+  z-index: 1;
 }
 
 .card__saved-button:hover {

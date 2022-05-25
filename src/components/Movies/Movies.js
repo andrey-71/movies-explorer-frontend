@@ -51,13 +51,18 @@ function Movies() {
         })
         .catch(err => console.log(err))
         .finally(() => {
-          setRenderMovies(JSON.parse(localStorage.getItem('renderMovies')));
-          setFoundMovies(JSON.parse(localStorage.getItem('foundMovies')));
-          setDataSearch(localStorage.getItem('dataSearch'));
-          setIsFilterShortMovies(JSON.parse(localStorage.getItem('filterShortMovies')));
+          setLocalStorageInitialData();
           setIsPreloader(false);
         });
   }, []);
+
+  // Функция записи параметров из localStorage при загрузке страницы
+  function setLocalStorageInitialData() {
+    setRenderMovies(JSON.parse(localStorage.getItem('renderMovies')));
+    setFoundMovies(JSON.parse(localStorage.getItem('foundMovies')));
+    setDataSearch(localStorage.getItem('dataSearch'));
+    setIsFilterShortMovies(JSON.parse(localStorage.getItem('filterShortMovies')));
+  }
 
   // Функция добавления фильмов при нажатии кнопки ещё из списка результатов поиска
   function handleAddMovies() {

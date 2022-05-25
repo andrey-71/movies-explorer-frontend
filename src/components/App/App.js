@@ -18,16 +18,15 @@ function App() {
   const navigate = useNavigate();
 
   // Авторизация пользователя
-  function handleLogin() {
-    mainApi.login({email: 'email@email.ru', password: '1'})
+  function handleLogin(userData) {
+    mainApi.login(userData)
       .then(user => {
-        console.log(user);
-      })
-      .catch(err => console.log(err))
-      .finally(() => {
-        setIsLogged(!isLogged);
+        console.log(user._id);
+        localStorage.setItem('idUser', user._id);
+        setIsLogged(true);
         navigate('/movies');
       })
+      .catch(err => console.log(err))
   }
 
   return (
@@ -65,7 +64,7 @@ function App() {
         {/*Фильмы*/}
         <Route path='/movies' element={
           <>
-            <Header isLogged={!isLogged} /> {/*Временное решение*/}
+            <Header isLogged={isLogged} />
             <main className='content page__content'>
               <Movies />
             </main>
@@ -76,7 +75,7 @@ function App() {
         {/*Сохраненные фильмы*/}
         <Route path='/saved-movies' element={
           <>
-            <Header isLogged={!isLogged} /> {/*Временное решение*/}
+            <Header isLogged={isLogged} />
             <main className='content page__content'>
               <SavedMovies
                 movies={savedMoviesList}
@@ -89,7 +88,7 @@ function App() {
         {/*Профиль*/}
         <Route path='/profile' element={
           <>
-            <Header isLogged={!isLogged} /> {/*Временное решение*/}
+            <Header isLogged={isLogged} />
             <main className='content page__content'>
               <Profile />
             </main>

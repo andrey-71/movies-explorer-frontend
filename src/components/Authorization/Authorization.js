@@ -35,6 +35,8 @@ function Authorization(props) {
               type='email'
               name={`email-${props.namePage}`}
               placeholder='Введите e-mail'
+              value={props.isEmail}
+              onChange={props.onEmail}
             />
           </label>
           <label className='authorization__input-item'>
@@ -44,6 +46,8 @@ function Authorization(props) {
               type='password'
               name={`password-${props.namePage}`}
               placeholder='Введите пароль'
+              value={props.isPassword}
+              onChange={props.onPassword}
             />
           </label>
           <span className='authorization__text-error authorization__text-error_visible'>Что-то пошло не так...</span>
@@ -59,7 +63,7 @@ function Authorization(props) {
           className='authorization__submit-button'
           type='submit'
           form='authorization-form'
-          onClick={props.onClick}
+          onClick={props.onSubmit}
         >
           {props.submitTextButton}
         </button>

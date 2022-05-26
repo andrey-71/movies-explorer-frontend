@@ -35,11 +35,8 @@ function App() {
   // Регистрация пользователя
   function handleRegister(userData) {
     mainApi.register(userData)
-      .then(user => {
-        console.log(user);
-        setCurrentUser(user);
-        setIsLogged(true);
-        navigate('/movies');
+      .then(() => {
+        handleLogin(userData);
       })
       .catch(err => console.log(`При регистрации произошла ошибка: ${err}`));
   }

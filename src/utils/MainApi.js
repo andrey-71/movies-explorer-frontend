@@ -40,7 +40,12 @@ class MainApi {
       credentials: 'include',
       headers: this._headers
     })
-      .then(res => this._handleResult(res))
+      .then(res => {
+        if(res.ok) {
+          return;
+        }
+        return Promise.reject(`${res.status} ${res.statusText}`);
+      })
   }
 
   // Запрос данных пользователя

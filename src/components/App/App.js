@@ -56,21 +56,20 @@ function App() {
       .catch(err => console.log(`При авторизации произошла ошибка: ${err}`))
   }
 
-  // --- !!! Это не работает как надо. Исправлять
   // Выход из учетной записи
   function handleLogout() {
     mainApi.logout()
-      .then(() => {
+      .then((res) => {
         localStorage.removeItem('idUser');
         localStorage.removeItem('foundMovies');
         localStorage.removeItem('renderMovies');
         localStorage.removeItem('dataSearch');
         localStorage.removeItem('filterShortMovies');
+        setIsLogged(false);
         navigate('/');
       })
       .catch(err => console.log(`При выходе из учетной записи произошла ошибка: ${err}`))
   }
-  // --- !!!
 
   // Получение данных пользователя по id
   function getUserData(id) {

@@ -37,7 +37,9 @@ function App() {
     mainApi.register(userData)
       .then(user => {
         console.log(user);
-        navigate('/signin');
+        setCurrentUser(user);
+        setIsLogged(true);
+        navigate('/movies');
       })
       .catch(err => console.log(`При регистрации произошла ошибка: ${err}`));
   }
@@ -46,7 +48,7 @@ function App() {
   function handleLogin(userData) {
     mainApi.login(userData)
       .then(user => {
-        getUserData(user._id);
+        setCurrentUser(user);
         localStorage.setItem('idUser', user._id);
         setIsLogged(true);
         navigate('/movies');
@@ -54,7 +56,7 @@ function App() {
       .catch(err => console.log(`При авторизации произошла ошибка: ${err}`))
   }
 
-  // --- !!! Проверить после полной настройки авторизации
+  // --- !!! Это не работает как надо. Исправлять
   // Выход из учетной записи
   function handleLogout() {
     mainApi.logout()

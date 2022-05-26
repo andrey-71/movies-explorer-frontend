@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     const idUser = localStorage.idUser;
     if (idUser) {
-      getUserData(idUser);
+      handleGetUserData(idUser);
       setIsLogged(true);
       navigate('/movies');
     }
@@ -69,12 +69,21 @@ function App() {
   }
 
   // Получение данных пользователя по id
-  function getUserData(id) {
+  function handleGetUserData(id) {
     mainApi.getUserData(id)
       .then(userData => {
         setCurrentUser(userData);
       })
       .catch(err => console.log(`При загрузке данных пользователя произошла ошибка: ${err}`))
+  }
+
+  // Обновление данных пользователя
+  function handleUpdateUserData(data) {
+    mainApi.updateUserDara(data)
+      .then(res => {
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(`При обновлении данных пользователя произошла ошибка: ${err}`))
   }
 
   return (
@@ -136,7 +145,10 @@ function App() {
               <ProtectedRoute isLogin={isLogged}>
                 <Header isLogged={isLogged} />
                 <main className='content page__content'>
-                  <Profile onLogout={handleLogout} />
+                  <Profile
+                    onDataUpdate={handleUpdateUserData}
+                    onLogout={handleLogout}
+                  />
                 </main>
               </ProtectedRoute>
             } />

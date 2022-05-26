@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from "react";
+import {useEffect, useState} from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
@@ -20,6 +20,17 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   // Данные пользователя
   const [currentUser, setCurrentUser] = useState({});
+
+  // Автоматическая авторизация при наличии id пользователя в localStorage
+  useEffect(() => {
+    const idUser = localStorage.idUser;
+    if (idUser) {
+      getUserData(idUser);
+      setIsLogged(true);
+      navigate('/movies');
+    }
+  }, []);
+  console.log(currentUser);
 
   // Регистрация пользователя
   function handleRegister(userData) {
@@ -59,7 +70,7 @@ function App() {
   }
   // --- !!!
 
-  // Получение данных пользователя
+  // Получение данных пользователя по id
   function getUserData(id) {
     mainApi.getUserData(id)
       .then(userData => {

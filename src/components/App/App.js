@@ -12,7 +12,6 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Footer from '../Footer/Footer';
-import { savedMoviesList } from '../../utils/config';
 import mainApi from "../../utils/MainApi";
 
 function App() {
@@ -132,9 +131,7 @@ function App() {
               <ProtectedRoute isLogin={isLogged}>
                 <Header isLogged={isLogged} />
                 <main className='content page__content'>
-                  <SavedMovies
-                    movies={savedMoviesList}
-                  />
+                  <SavedMovies />
                 </main>
                 <Footer />
               </ProtectedRoute>

@@ -1,8 +1,21 @@
 import './SavedMovies.css';
+import { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import mainApi from '../../utils/MainApi';
 
-function SavedMovies(props) {
+function SavedMovies() {
+  const [savedMovies, setSavedMovies] = useState([]);
+  console.log(savedMovies[0]);
+
+  // Загрузка сохраненных фильмов
+  useEffect(() => {
+    mainApi.getSavedMovies()
+      .then(res => {
+        setSavedMovies(res);
+      })
+  }, []);
+
   const pageSavedMovies = true;
 
   return (
@@ -10,7 +23,7 @@ function SavedMovies(props) {
       <SearchForm />
       <MoviesCardList
         isPageSavedMovies={pageSavedMovies}
-        movies={props.movies}
+        movies={savedMovies}
       />
     </section>
   )

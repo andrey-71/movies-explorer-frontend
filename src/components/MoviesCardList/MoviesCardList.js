@@ -10,10 +10,15 @@ function MoviesCardList(props) {
       {props.movies && props.movies.map(movie => {
         return (
           <MoviesCard
-            key={movie.id}
+            key={props.isPageSavedMovies ? movie._id : movie.id}
             name={movie.nameRU}
             duration={movie.duration}
-            imageUrl={serverUrl.imageMovies + movie.image.url}
+            imageUrl={
+              props.isPageSavedMovies ?
+                movie.image
+                :
+                serverUrl.imageMovies + movie.image.url
+            }
             trailerUrl={movie.trailerLink}
             isPageSavedMovies={props.isPageSavedMovies}
           />

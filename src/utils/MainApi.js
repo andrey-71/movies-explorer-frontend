@@ -74,6 +74,18 @@ class MainApi {
       .then(res => this._handleResult(res));
   }
 
+  // Запрос сохраненных фильмов
+  getSavedMovies() {
+    return fetch(`${this._serverUrl}/movies/`, {
+      credentials: 'include',
+      headers: this._headers
+    })
+      .then(res => this._handleResult(res));
+  }
+
+
+
+
   // Обработчик запроса
   _handleResult(res) {
     if (res.ok) {

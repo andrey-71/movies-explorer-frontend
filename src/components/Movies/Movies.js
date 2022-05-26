@@ -86,6 +86,7 @@ function Movies() {
         // Обработка результатов поиска
         const foundMoviesList = allMovies.filter(movie => movie.nameRU.toLowerCase().indexOf(dataSearch.toLowerCase()) >= 0);
         localStorage.setItem('foundMovies', JSON.stringify(foundMoviesList));
+        console.log(foundMoviesList);
         // Рендеринг карточек фильмов
         const renderMoviesList = [];
         if (foundMoviesList.length !== 0) {

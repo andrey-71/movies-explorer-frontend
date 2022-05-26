@@ -1,7 +1,8 @@
 import './App.css';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -30,7 +31,6 @@ function App() {
       navigate('/movies');
     }
   }, []);
-  console.log(currentUser);
 
   // Регистрация пользователя
   function handleRegister(userData) {
@@ -56,7 +56,7 @@ function App() {
   // Выход из учетной записи
   function handleLogout() {
     mainApi.logout()
-      .then((res) => {
+      .then(() => {
         localStorage.removeItem('idUser');
         localStorage.removeItem('foundMovies');
         localStorage.removeItem('renderMovies');
@@ -91,7 +91,6 @@ function App() {
               </main>
               <Footer />
             </>
-
           } />
 
           {/*Регистрация*/}
@@ -108,39 +107,39 @@ function App() {
             </main>
           } />
 
-          {/*Фильмы*/}
-          <Route path='/movies' element={
-            <>
-              <Header isLogged={isLogged} />
-              <main className='content page__content'>
-                <Movies />
-              </main>
-              <Footer />
-            </>
-          } />
+            {/*Фильмы*/}
+            <Route path='/movies' element={
+              <ProtectedRoute isLogin={isLogged}>
+                <Header isLogged={isLogged} />
+                <main className='content page__content'>
+                  <Movies />
+                </main>
+                <Footer />
+              </ProtectedRoute>
+            } />
 
-          {/*Сохраненные фильмы*/}
-          <Route path='/saved-movies' element={
-            <>
-              <Header isLogged={isLogged} />
-              <main className='content page__content'>
-                <SavedMovies
-                  movies={savedMoviesList}
-                />
-              </main>
-              <Footer />
-            </>
-          } />
+            {/*Сохраненные фильмы*/}
+            <Route path='/saved-movies' element={
+              <ProtectedRoute isLogin={isLogged}>
+                <Header isLogged={isLogged} />
+                <main className='content page__content'>
+                  <SavedMovies
+                    movies={savedMoviesList}
+                  />
+                </main>
+                <Footer />
+              </ProtectedRoute>
+            } />
 
-          {/*Профиль*/}
-          <Route path='/profile' element={
-            <>
-              <Header isLogged={isLogged} />
-              <main className='content page__content'>
-                <Profile onLogout={handleLogout} />
-              </main>
-            </>
-          } />
+            {/*Профиль*/}
+            <Route path='/profile' element={
+              <ProtectedRoute isLogin={isLogged}>
+                <Header isLogged={isLogged} />
+                <main className='content page__content'>
+                  <Profile onLogout={handleLogout} />
+                </main>
+              </ProtectedRoute>
+            } />
 
           {/*404 Страница не найдена*/}
           <Route path='*' element={

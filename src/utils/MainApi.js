@@ -60,6 +60,20 @@ class MainApi {
       .then(res => this._handleResult(res));
   }
 
+  // Обновление данных пользователя
+  updateUserDara(data) {
+    return fetch(`${this._serverUrl}/users/me`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email
+      })
+    })
+      .then(res => this._handleResult(res));
+  }
+
   // Обработчик запроса
   _handleResult(res) {
     if (res.ok) {

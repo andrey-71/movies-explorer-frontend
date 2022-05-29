@@ -6,7 +6,6 @@ import mainApi from '../../utils/MainApi';
 
 function SavedMovies() {
   const [savedMovies, setSavedMovies] = useState([]);
-  console.log(savedMovies[0]);
 
   // Загрузка сохраненных фильмов
   useEffect(() => {

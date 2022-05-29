@@ -1,7 +1,5 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import { serverUrl } from '../../utils/config';
-
 
 function MoviesCardList(props) {
   
@@ -11,16 +9,9 @@ function MoviesCardList(props) {
         return (
           <MoviesCard
             key={props.isPageSavedMovies ? movie._id : movie.id}
-            name={movie.nameRU}
-            duration={movie.duration}
-            imageUrl={
-              props.isPageSavedMovies ?
-                movie.image
-                :
-                serverUrl.imageMovies + movie.image.url
-            }
-            trailerUrl={movie.trailerLink}
+            movie={movie}
             isPageSavedMovies={props.isPageSavedMovies}
+            handleAddSavedMovies={props.handleAddSavedMovies}
           />
         )
       })}

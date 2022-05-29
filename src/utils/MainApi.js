@@ -3,6 +3,7 @@ import { serverUrl } from "./config";
 class MainApi {
   constructor(options) {
     this._serverUrl = options.serverUrl;
+    this._imageUrrl = options.imageUrl;
     this._headers = options.headers;
   }
 
@@ -83,6 +84,33 @@ class MainApi {
       .then(res => this._handleResult(res));
   }
 
+  // Сохранение фильмов
+  addSavedMovies(data, user) {
+    return fetch(`${this._serverUrl}/movies/`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user}`
+      },
+      body: JSON.stringify({
+        movieId: data.id,
+        nameRU: data.nameRU,
+        nameEN: data.nameEN,
+        director: data.director,
+        country: data.country,
+        year: data.year,
+        duration: data.duration,
+        description: data.description,
+        trailerLink: data.trailerLink,
+        image: this._imageUrrl + data.image.url,
+        thumbnail: this._imageUrrl + data.image.formats.thumbnail.url,
+        // owner: user._id,
+      })
+    })
+      .then(res => this._handleResult(res));
+  }
+
 
 
 
@@ -97,6 +125,7 @@ class MainApi {
 
 const mainApi = new MainApi({
   serverUrl: serverUrl.main,
+  imageUrl: serverUrl.imageMovies,
   headers: {
     'Content-Type': 'application/json'
   }

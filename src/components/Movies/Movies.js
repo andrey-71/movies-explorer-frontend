@@ -114,7 +114,7 @@ function Movies() {
     }
   }
 
-  // Функция установки количества отрисовываемых карточек в зависимости от размера экрана
+  // Функция установки количества отрисовываемых карточек в зависимости от ширины экрана
   function handleScreenWidth() {
     if (document.documentElement.scrollWidth >= 1280) {
       setRenderInitialCardNumber(9);

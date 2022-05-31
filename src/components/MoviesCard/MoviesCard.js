@@ -1,5 +1,5 @@
 import './MoviesCard.css';
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import { serverUrl } from '../../utils/config';
 import mainApi from '../../utils/MainApi';
 
@@ -11,18 +11,37 @@ function MoviesCard(props) {
     'card__saved-button card__saved-button_type_movies card__saved-button_active';
   const buttonSavedMoviesClassName = 'card__saved-button card__saved-button_type_saved-movies';
 
+  // Определение сохраненных фильмов
+  useEffect(() => {
+    if (!props.isPageSavedMovies) {
+      mainApi.getSavedMovies()
+        .then(savedMovies => {
+          if (savedMovies) {
+            savedMovies.some(savedMovie => {
+              savedMovie.movieId === props.movie.id && setIsSaved(true);
+            })
+          }
+        })
+        .catch(err => console.log(`При загрузке фильмов произошла ошибка: ${err}`));
+    }
+  }, []);
+
+  console.log(isSaved);
+
   // Функция сохранения фильма
   function handleAddSavedMovies(data) {
     mainApi.addSavedMovies(data)
-      .then(() => setIsSaved(true))
+      .then(() => {
+        setIsSaved(true);
+        console.log(true);
+      })
       .catch(err => console.log(`При сохранении фильма произошла ошибка: ${err}`));
   }
 
-  // Функция сохранения фильмов
+    // Функция сохранения фильмов
   function handleSavedMovie(evt) {
     evt.stopPropagation();
-    isSaved === false && handleAddSavedMovies(props.movie);
-
+    !isSaved && handleAddSavedMovies(props.movie);
   }
 
   // Функция для перевода времени

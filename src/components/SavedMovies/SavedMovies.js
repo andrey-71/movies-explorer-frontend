@@ -1,28 +1,37 @@
 import './SavedMovies.css';
 import { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import SavedMoviesCardList from '../SavedMoviesCardList/SavedMoviesCardList';
 import mainApi from '../../utils/MainApi';
 
 function SavedMovies() {
+  // Сохраненные фильмы
   const [savedMovies, setSavedMovies] = useState([]);
 
   // Загрузка сохраненных фильмов
   useEffect(() => {
     mainApi.getSavedMovies()
-      .then(res => {
-        setSavedMovies(res);
+      .then(savedMovies => {
+        setSavedMovies(savedMovies);
       })
+      .catch(err => console.log(`При загрузке сохраненных фильмов произошла ошибка: ${err}`))
   }, []);
 
-  const pageSavedMovies = true;
+  // Функция удаления фильма
+  function handleDeleteMovies(movie) {
+    mainApi.deleteSavedMovies(movie._id)
+      .then(() => {
+        setSavedMovies(savedMovies.filter((savedMovie) => savedMovie._id !== movie._id));
+      })
+      .catch(err => console.log(`При удалении фильма произошла ошибка: ${err}`));
+  }
 
   return (
     <section className='saved-movies'>
       <SearchForm />
-      <MoviesCardList
-        isPageSavedMovies={pageSavedMovies}
-        movies={savedMovies}
+      <SavedMoviesCardList
+        savedMovies={savedMovies}
+        onDeleteMovies={handleDeleteMovies}
       />
     </section>
   )

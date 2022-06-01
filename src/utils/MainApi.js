@@ -105,14 +105,20 @@ class MainApi {
         trailerLink: data.trailerLink,
         image: this._imageUrrl + data.image.url,
         thumbnail: this._imageUrrl + data.image.formats.thumbnail.url,
-        // owner: user._id,
       })
     })
       .then(res => this._handleResult(res));
   }
 
-
-
+  // Удаление фильмов
+  deleteSavedMovies(id) {
+    return fetch(`${this._serverUrl}/movies/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: this._headers
+    })
+      .then(res => this._handleResult(res));
+  }
 
   // Обработчик запроса
   _handleResult(res) {

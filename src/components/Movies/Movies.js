@@ -5,6 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import AddMovies from '../AddMovies/AddMovies';
 import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
+import { serverUrl } from '../../utils/config'
 
 function Movies() {
   // Все фильмы
@@ -96,8 +97,8 @@ function Movies() {
   }
 
   // Функция поиска фильмов
-  function searchMovies(e) {
-    e.preventDefault();
+  function searchMovies(evt) {
+    evt.preventDefault();
     if (dataSearch.length !== 0) {
       try {
         handleRenderMovies(handleFoundMovies(dataSearch));
@@ -152,7 +153,19 @@ function Movies() {
 
   // Функция сохранения фильма
   function handleSaveMovies(data) {
-    mainApi.addSavedMovies(data)
+    mainApi.addSavedMovies({
+      movieId: data.id,
+      nameRU: data.nameRU ? data.nameRU : 'No name',
+      nameEN: data.nameEN ? data.nameEN : 'No name',
+      director: data.director ? data.director : 'No director',
+      country: data.country ? data.country : 'No country',
+      year: data.year ? data.year : '0000',
+      duration: data.duration ? data.duration : 0,
+      description: data.description ? data.description : 'No description',
+      trailerLink: data.trailerLink,
+      image: serverUrl.imageMovies + data.image.url,
+      thumbnail: serverUrl.imageMovies + data.image.formats.thumbnail.url
+    })
       .then((movie) => {
         setSavedMovies(allSavedMovies => {
           return [...allSavedMovies, movie];

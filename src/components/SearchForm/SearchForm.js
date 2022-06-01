@@ -3,12 +3,6 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm(props) {
 
-  // Обработчики изменения инпута
-  function handleChangeDataSearch(evt) {
-    props.setDataSearch(evt.target.value);
-    localStorage.setItem('dataSearch', evt.target.value);
-  }
-
   return (
     <section className='search'>
       <div className='search__container'>
@@ -22,7 +16,7 @@ function SearchForm(props) {
             className='search__input'
             name='dataSearch'
             value={props.dataSearch ?? ''}
-            onChange={handleChangeDataSearch}
+            onChange={props.onChangeDataSearch}
           />
           <button className='search__button' type='submit'>
             <span className='search__button-icon' />

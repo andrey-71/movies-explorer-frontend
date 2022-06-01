@@ -69,10 +69,10 @@ function Movies() {
 
   // Функция записи параметров из localStorage при загрузке страницы
   function setLocalStorageInitialData() {
-    setRenderMovies(JSON.parse(localStorage.getItem('renderMovies')));
-    setFoundMovies(JSON.parse(localStorage.getItem('foundMovies')));
-    setDataSearch(localStorage.getItem('dataSearch'));
-    setIsFilterShortMovies(JSON.parse(localStorage.getItem('filterShortMovies')));
+    setRenderMovies(JSON.parse(localStorage.renderMovies));
+    setFoundMovies(JSON.parse(localStorage.foundMovies));
+    setDataSearch(localStorage.dataSearchMovies);
+    setIsFilterShortMovies(JSON.parse(localStorage.filterShortMovies));
   }
 
   // Функция добавления фильмов при нажатии кнопки ещё из списка результатов поиска
@@ -87,6 +87,12 @@ function Movies() {
       }
     })
     setRenderMovies(renderMoviesList);
+  }
+
+  // Функция обработки данных в поисковой строке
+  function handleChangeDataSearch(evt) {
+    setDataSearch(evt.target.value);
+    localStorage.setItem('dataSearchMovies', evt.target.value);
   }
 
   // Функция поиска фильмов
@@ -188,8 +194,8 @@ function Movies() {
     <section className="movies">
       <SearchForm
         dataSearch={dataSearch}
-        setDataSearch={setDataSearch}
         isFilterShortMovies={isFilterShortMovies}
+        onChangeDataSearch={handleChangeDataSearch}
         onSearchMovies={searchMovies}
         onFilteredShortMovies={handleFilteredShortMovies}
       />

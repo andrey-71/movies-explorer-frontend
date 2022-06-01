@@ -89,40 +89,59 @@ function Movies() {
     setRenderMovies(renderMoviesList);
   }
 
-  // Функция поиска фильмов и рендеринга на странице
+  // Функция поиска фильмов
   function searchMovies(e) {
     e.preventDefault();
     if (dataSearch.length !== 0) {
       try {
-        // Обработка результатов поиска
-        const foundMoviesList = allMovies.filter(movie => movie.nameRU.toLowerCase().indexOf(dataSearch.toLowerCase()) >= 0);
-        localStorage.setItem('foundMovies', JSON.stringify(foundMoviesList));
-        console.log(foundMoviesList);
-        // Рендеринг карточек фильмов
-        const renderMoviesList = [];
-        if (foundMoviesList.length !== 0) {
-          foundMoviesList.map(movie => {
-            foundMoviesList.indexOf(movie) < renderInitialCardNumber && renderMoviesList.push(movie);
-          })
-          localStorage.setItem('renderMovies', JSON.stringify(renderMoviesList));
-          // Обновление состояние кнопки при каждом поиске
-          foundMoviesList.length >= renderInitialCardNumber ?
-            setIsAddButton(true) : setIsAddButton(false);
-          // Запись в стейт найденных и отрендеринных фильмов
-          setFoundMovies(foundMoviesList);
-          setRenderMovies(renderMoviesList);
-        } else {
-          setRenderMovies([]);
-          localStorage.removeItem('renderMovies');
-          console.log('Ничего не найдено');
-        }
+        handleRenderMovies(handleFoundMovies(dataSearch));
+        localStorage.setItem('filterShortMovies', JSON.stringify(isFilterShortMovies));
       }
       catch (err) {
         console.log('Произошла ошибка');
       }
-    } else {
+    }
+    else {
       console.log('Введите название фильма');
     }
+  }
+
+  // Функция обработки результатов посика
+  function handleFoundMovies(dataSearch) {
+    if (isFilterShortMovies) {
+      const foundMoviesList = allMovies.filter(movie => movie.nameRU.toLowerCase().indexOf(dataSearch.toLowerCase()) >= 0);
+      return foundMoviesList.filter(foundMovie => foundMovie.duration <= 40);
+    } else {
+      return allMovies.filter(movie => movie.nameRU.toLowerCase().indexOf(dataSearch.toLowerCase()) >= 0);
+    }
+  }
+  // Функция рендеринга карточек
+  function handleRenderMovies(foundMovies) {
+    const renderMoviesList = [];
+    if (foundMovies.length !== 0) {
+      foundMovies.map(movie => {
+        foundMovies.indexOf(movie) < renderInitialCardNumber && renderMoviesList.push(movie);
+      })
+      localStorage.setItem('foundMovies', JSON.stringify(foundMovies));
+      localStorage.setItem('renderMovies', JSON.stringify(renderMoviesList));
+      // Обновление состояние кнопки при каждом поиске
+      foundMovies.length >= renderInitialCardNumber ?
+        setIsAddButton(true) : setIsAddButton(false);
+      // Запись в стейт найденных и отрендеринных фильмов
+      setFoundMovies(foundMovies);
+      setRenderMovies(renderMoviesList);
+    } else {
+      setFoundMovies([]);
+      setRenderMovies([]);
+      localStorage.removeItem('foundMovies');
+      localStorage.removeItem('renderMovies');
+      console.log('Ничего не найдено');
+    }
+  }
+
+  // Функция включения/отключения фильтра короткометражных фильмов
+  function handleFilteredShortMovies() {
+    setIsFilterShortMovies(!isFilterShortMovies);
   }
 
   // Функция сохранения фильма
@@ -147,7 +166,6 @@ function Movies() {
           })
           .catch(err => console.log(`При удалении фильма произошла ошибка: ${err}`));
     })
-
   }
 
   // Функция установки количества отрисовываемых карточек в зависимости от ширины экрана
@@ -169,11 +187,11 @@ function Movies() {
   return (
     <section className="movies">
       <SearchForm
-        onClick={searchMovies}
         dataSearch={dataSearch}
         setDataSearch={setDataSearch}
         isFilterShortMovies={isFilterShortMovies}
-        setIsFilterShortMovies={setIsFilterShortMovies}
+        onSearchMovies={searchMovies}
+        onFilteredShortMovies={handleFilteredShortMovies}
       />
       <MoviesCardList
         movies={renderMovies}
@@ -188,7 +206,6 @@ function Movies() {
         />
         : null
       }
-
     </section>
   )
 }

@@ -14,7 +14,7 @@ function SearchForm(props) {
       <div className='search__container'>
         <form className='search__form'
               name='form-search'
-              onSubmit={props.onClick}>
+              onSubmit={props.onSearchMovies}>
           <div className='search__icon' />
           <input
             type='text'
@@ -31,7 +31,7 @@ function SearchForm(props) {
         <FilterCheckbox
           description='Короткометражки'
           isFilterShortMovies={props.isFilterShortMovies}
-          setIsFilterShortMovies={props.setIsFilterShortMovies}
+          onFilteredShortMovies={props.onFilteredShortMovies}
         />
       </div>
     </section>

@@ -1,18 +1,31 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import { serverUrl } from '../../utils/config';
 
 function MoviesCardList(props) {
+  const buttonClassName = 'card__saved-button card__saved-button_type_movies';
+  const buttonClassNameActive = 'card__saved-button card__saved-button_type_movies card__saved-button_active';
   
   return (
     <section className='cards'>
       {props.movies && props.movies.map(movie => {
-        return (
+        const isSaved = props.savedMovies.some(savedMovie => savedMovie.movieId === movie.id);
+
+        return(
           <MoviesCard
-            key={props.isPageSavedMovies ? movie._id : movie.id}
-            movie={movie}
-            isPageSavedMovies={props.isPageSavedMovies}
-            handleAddSavedMovies={props.handleAddSavedMovies}
-          />
+            key={movie.id}
+            name={movie.nameRU}
+            duration={movie.duration}
+            imageLink={serverUrl.imageMovies + movie.image.url}
+            trailerLink={movie.trailerLink}
+          >
+            <button
+              className={isSaved ? buttonClassNameActive : buttonClassName}
+              onClick={() => {
+                isSaved ? props.onDeleteMovies(movie) : props.onSaveMovies(movie);
+              }}
+            />
+          </MoviesCard>
         )
       })}
     </section>

@@ -4,6 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import AddMovies from '../AddMovies/AddMovies';
 import moviesApi from "../../utils/MoviesApi";
+import mainApi from '../../utils/MainApi';
 
 function Movies() {
   // Все фильмы
@@ -12,6 +13,8 @@ function Movies() {
   const [foundMovies, setFoundMovies] = useState([]);
   // Карточки с фильмами для рендеринга
   const [renderMovies, setRenderMovies] = useState([]);
+  // Сохраненные фильмы
+  const [savedMovies, setSavedMovies] = useState([]);
   // Стейт данных в поисковой строке
   const [dataSearch, setDataSearch] = useState('');
   // Количество отрисовываемых карточек
@@ -48,12 +51,20 @@ function Movies() {
       moviesApi.getMovies()
         .then((movies) => {
           setAllMovies(movies);
+          setLocalStorageInitialData();
         })
         .catch(err => console.log(err))
         .finally(() => {
-          setLocalStorageInitialData();
           setIsPreloader(false);
         });
+  }, []);
+
+  // Загрузка сохраненных фильмов
+  useEffect(() => {
+    mainApi.getSavedMovies()
+      .then(savedMovies => {
+        setSavedMovies(savedMovies);
+      })
   }, []);
 
   // Функция записи параметров из localStorage при загрузке страницы
@@ -114,6 +125,31 @@ function Movies() {
     }
   }
 
+  // Функция сохранения фильма
+  function handleSaveMovies(data) {
+    mainApi.addSavedMovies(data)
+      .then((movie) => {
+        setSavedMovies(allSavedMovies => {
+          return [...allSavedMovies, movie];
+        })
+        console.log(movie);
+      })
+      .catch(err => console.log(`При сохранении фильма произошла ошибка: ${err}`));
+  }
+
+  // Функция удаления фильма
+  function handleDeleteMovies(movie) {
+    savedMovies.map((savedMovie) => {
+      movie.id === savedMovie.movieId &&
+        mainApi.deleteSavedMovies(savedMovie._id)
+          .then(() => {
+            setSavedMovies(savedMovies.filter(((m) => m._id !== savedMovie._id)));
+          })
+          .catch(err => console.log(`При удалении фильма произошла ошибка: ${err}`));
+    })
+
+  }
+
   // Функция установки количества отрисовываемых карточек в зависимости от ширины экрана
   function handleScreenWidth() {
     if (document.documentElement.scrollWidth >= 1280) {
@@ -141,8 +177,9 @@ function Movies() {
       />
       <MoviesCardList
         movies={renderMovies}
-        renderInitialCardNumber={renderInitialCardNumber}
-        renderMoreCardNumber={renderMoreCardNumber}
+        savedMovies={savedMovies}
+        onSaveMovies={handleSaveMovies}
+        onDeleteMovies={handleDeleteMovies}
       />
       {isAddButton || isPreloader ?
         <AddMovies

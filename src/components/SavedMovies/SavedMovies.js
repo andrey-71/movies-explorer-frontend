@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import SavedMoviesCardList from '../SavedMoviesCardList/SavedMoviesCardList';
 import mainApi from '../../utils/MainApi';
+import Preloader from '../Preloader/Preloader';
 
 function SavedMovies() {
   // Сохраненные фильмы
@@ -11,17 +12,21 @@ function SavedMovies() {
   const [renderMovies, setRenderMovies] = useState([]);
   // Стейт данных в поисковой строке
   const [dataSearch, setDataSearch] = useState('');
+  // Прелоадер
+  const [isPreloader, setIsPreloader] = useState(false);
   // Фильтр короткометражек
   const [isFilterShortMovies, setIsFilterShortMovies] = useState(false);
 
   // Загрузка сохраненных фильмов
   useEffect(() => {
+    setIsPreloader(true);
     mainApi.getSavedMovies()
       .then(savedMovies => {
         setSavedMovies(savedMovies);
         setRenderMovies(savedMovies);
       })
       .catch(err => console.log(`При загрузке сохраненных фильмов произошла ошибка: ${err}`))
+      .finally(() => setIsPreloader(false))
   }, []);
 
   // Функция обработки данных в поисковой строке
@@ -86,6 +91,7 @@ function SavedMovies() {
         movies={renderMovies}
         onDeleteMovies={handleDeleteMovies}
       />
+      <Preloader isPreloaderVisible={isPreloader} />
     </section>
   )
 }

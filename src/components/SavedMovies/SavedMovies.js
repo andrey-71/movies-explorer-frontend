@@ -16,6 +16,8 @@ function SavedMovies() {
   const [isPreloader, setIsPreloader] = useState(false);
   // Фильтр короткометражек
   const [isFilterShortMovies, setIsFilterShortMovies] = useState(false);
+  // Текст при отсутствии результата при поиске фильмов
+  const [isMessageNotFoundMovies, setIsMessageNotFoundMovies] = useState('');
 
   // Загрузка сохраненных фильмов
   useEffect(() => {
@@ -59,7 +61,7 @@ function SavedMovies() {
       setRenderMovies(savedMovies.filter(movie => movie.nameRU.toLowerCase().indexOf(dataSearch.toLowerCase()) >= 0));
     } else if (foundSavedMoviesList.length === 0) {
       setRenderMovies([]);
-      console.log('Ничего не найдено');
+      setIsMessageNotFoundMovies('Ничего не найдено');
     }
   }
 
@@ -89,6 +91,7 @@ function SavedMovies() {
       />
       <SavedMoviesCardList
         movies={renderMovies}
+        isMessage={isMessageNotFoundMovies}
         onDeleteMovies={handleDeleteMovies}
       />
       <Preloader isPreloaderVisible={isPreloader} />

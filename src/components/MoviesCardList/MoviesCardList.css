@@ -7,9 +7,26 @@
   background-color: #fafafa;
 }
 
+.cards__message {
+  margin: 0;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 24px;
+  line-height: 1.23;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-align: center;
+  color: #a0a0a0;
+}
+
 @media screen and (max-width: 1024px) {
   .cards {
-    grid-template-columns: repeat(2, minmax(300px, 364px));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 339px));
     grid-gap: 36px 30px;
     padding: 70px 0 30px;
   }
@@ -20,5 +37,9 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 339px));
     grid-gap: 36px 30px;
     padding: 40px 0 30px;
+  }
+
+  .cards__message {
+    font-size: 18px;
   }
 }

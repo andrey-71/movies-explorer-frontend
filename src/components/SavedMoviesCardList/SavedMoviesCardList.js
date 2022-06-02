@@ -6,23 +6,27 @@ function SavedMoviesCardList(props) {
 
   return(
     <section className='cards'>
-      {props.movies.map(movie => {
-        return(
-          <MoviesCard
-            key={movie._id}
-            name={movie.nameRU}
-            duration={movie.duration}
-            imageLink={movie.image}
-            trailerLink={movie.trailerLink}
-            handleAddSavedMovies={props.handleAddSavedMovies}
-          >
-            <button
-              className={buttonClassName}
-              onClick={() => props.onDeleteMovies(movie)}
-            />
-          </MoviesCard>
-        )
-      })}
+      {props.movies && props.movies.length > 0 ?
+        props.movies.map(movie => {
+          return(
+            <MoviesCard
+              key={movie._id}
+              name={movie.nameRU}
+              duration={movie.duration}
+              imageLink={movie.image}
+              trailerLink={movie.trailerLink}
+              handleAddSavedMovies={props.handleAddSavedMovies}
+            >
+              <button
+                className={buttonClassName}
+                onClick={() => props.onDeleteMovies(movie)}
+              />
+            </MoviesCard>
+          )
+        })
+        :
+        <p className='cards__message'>{props.isMessage}</p>
+      }
     </section>
   )
 }

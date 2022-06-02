@@ -27,6 +27,8 @@ function Movies() {
   const [isPreloader, setIsPreloader] = useState(false);
   // Фильтр короткометражек
   const [isFilterShortMovies, setIsFilterShortMovies] = useState(false);
+  // Текст при отсутствии результата при поиске фильмов
+  const [isMessageNotFoundMovies, setIsMessageNotFoundMovies] = useState('');
 
     // Установка кол-ва отрисовываемых (добавляемых) карточек в зависимости от ширины экрана
   useEffect(() => {
@@ -143,7 +145,7 @@ function Movies() {
       localStorage.removeItem('foundMovies');
       localStorage.removeItem('renderMovies');
       setIsAddButton(false);
-      console.log('Ничего не найдено');
+      setIsMessageNotFoundMovies('Ничего не найдено');
     }
   }
 
@@ -216,6 +218,7 @@ function Movies() {
       <MoviesCardList
         movies={renderMovies}
         savedMovies={savedMovies}
+        isMessage={isMessageNotFoundMovies}
         onSaveMovies={handleSaveMovies}
         onDeleteMovies={handleDeleteMovies}
       />

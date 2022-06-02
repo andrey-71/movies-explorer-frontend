@@ -6,7 +6,7 @@ function SavedMoviesCardList(props) {
 
   return(
     <section className='cards'>
-      {props.savedMovies.map(movie => {
+      {props.movies.map(movie => {
         return(
           <MoviesCard
             key={movie._id}

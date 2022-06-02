@@ -10,9 +10,9 @@ import { serverUrl } from '../../utils/config'
 function Movies() {
   // Все фильмы
   const [allMovies, setAllMovies] = useState([]);
-  // Найденные при поиске карточки
+  // Найденные при поиске фильмы
   const [foundMovies, setFoundMovies] = useState([]);
-  // Карточки с фильмами для рендеринга
+  // Фильмы для рендеринга
   const [renderMovies, setRenderMovies] = useState([]);
   // Сохраненные фильмы
   const [savedMovies, setSavedMovies] = useState([]);
@@ -70,10 +70,10 @@ function Movies() {
 
   // Функция записи параметров из localStorage при загрузке страницы
   function setLocalStorageInitialData() {
-    setRenderMovies(JSON.parse(localStorage.renderMovies));
-    setFoundMovies(JSON.parse(localStorage.foundMovies));
-    setDataSearch(localStorage.dataSearchMovies);
-    setIsFilterShortMovies(JSON.parse(localStorage.filterShortMovies));
+    localStorage.renderMovies && setRenderMovies(JSON.parse(localStorage.renderMovies));
+    localStorage.foundMovies && setFoundMovies(JSON.parse(localStorage.foundMovies));
+    localStorage.dataSearchMovies && setDataSearch(localStorage.dataSearchMovies);
+    localStorage.filterShortMovies && setIsFilterShortMovies(JSON.parse(localStorage.filterShortMovies));
   }
 
   // Функция добавления фильмов при нажатии кнопки ещё из списка результатов поиска

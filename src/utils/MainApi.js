@@ -85,7 +85,6 @@ class MainApi {
 
   // Сохранение фильмов
   addSavedMovies(data, user) {
-    console.log(data)
     return fetch(`${this._serverUrl}/movies/`, {
       method: 'POST',
       credentials: 'include',

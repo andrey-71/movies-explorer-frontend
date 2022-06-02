@@ -16,17 +16,18 @@ function MoviesCard(props) {
 
   return (
     <article className='card'>
-      <a className='card__container' href={props.trailerLink} target='_blank' />
       <div className='card__container-info'>
         <h2 className='card__title'>{props.name}</h2>
         <p className='card__duration'>{durationMovies}</p>
         {props.children}
       </div>
-      <img
-        className='card__image'
-        src={props.imageLink}
-        alt='Изображение-превью к фильму'
-      />
+      <a className='card__image-container' href={props.trailerLink} target='_blank'>
+        <img
+          className='card__image'
+          src={props.imageLink}
+          alt='Изображение-превью к фильму'
+        />
+      </a>
     </article>
   )
 }

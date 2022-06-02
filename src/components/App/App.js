@@ -27,7 +27,7 @@ function App() {
     if (idUser) {
       handleGetUserData(idUser);
       setIsLogged(true);
-      navigate('/movies');
+      navigate(window.location.pathname);
     }
   }, []);
 
@@ -59,8 +59,9 @@ function App() {
         localStorage.removeItem('idUser');
         localStorage.removeItem('foundMovies');
         localStorage.removeItem('renderMovies');
-        localStorage.removeItem('dataSearch');
+        localStorage.removeItem('dataSearchMovies');
         localStorage.removeItem('filterShortMovies');
+        setCurrentUser({});
         setIsLogged(false);
         navigate('/');
       })

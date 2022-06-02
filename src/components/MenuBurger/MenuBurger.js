@@ -20,7 +20,9 @@ function MenuBurger(props) {
       <nav className={menuBurgerContainerClassName}>
         <div className='menu-burger__films'>
           <Link
-            className='menu-burger__link'
+            className={
+              path === '/' ? 'menu-burger__link menu-burger__link_active' : 'menu-burger__link'
+            }
             to='/'
             onClick={props.onClick}
           >

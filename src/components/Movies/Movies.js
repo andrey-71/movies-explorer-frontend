@@ -93,7 +93,6 @@ function Movies() {
   // Функция обработки данных в поисковой строке
   function handleChangeDataSearch(evt) {
     setDataSearch(evt.target.value);
-    localStorage.setItem('dataSearchMovies', evt.target.value);
   }
 
   // Функция поиска фильмов
@@ -103,6 +102,7 @@ function Movies() {
       try {
         handleRenderMovies(handleFoundMovies(dataSearch));
         localStorage.setItem('filterShortMovies', JSON.stringify(isFilterShortMovies));
+        localStorage.setItem('dataSearchMovies', dataSearch);
       }
       catch (err) {
         console.log('Произошла ошибка');
@@ -142,6 +142,7 @@ function Movies() {
       setRenderMovies([]);
       localStorage.removeItem('foundMovies');
       localStorage.removeItem('renderMovies');
+      setIsAddButton(false);
       console.log('Ничего не найдено');
     }
   }

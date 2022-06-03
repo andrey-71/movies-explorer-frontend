@@ -5,7 +5,6 @@ import { serverUrl } from '../../utils/config';
 function MoviesCardList(props) {
   const buttonClassName = 'card__saved-button card__saved-button_type_movies';
   const buttonClassNameActive = 'card__saved-button card__saved-button_type_movies card__saved-button_active';
-  console.log(props.isMessage);
 
   return (
     <section className='cards'>

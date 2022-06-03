@@ -46,8 +46,9 @@ function SavedMovies() {
       catch (err) {
         console.log('Произошла ошибка');
       }
-    }
-    else {
+    } else if (dataSearch.length === 0 && isFilterShortMovies) {
+      setRenderMovies(savedMovies.filter(movie => movie.duration <= 40));
+    } else {
       setRenderMovies(savedMovies);
     }
   }

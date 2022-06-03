@@ -94,6 +94,7 @@
 
 .profile__input-error {
   opacity: 0;
+  min-height: 12px;
   grid-area: input-error;
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;

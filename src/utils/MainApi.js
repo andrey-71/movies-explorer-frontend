@@ -61,14 +61,14 @@ class MainApi {
   }
 
   // Обновление данных пользователя
-  updateUserDara(data) {
+  updateUserData(data) {
     return fetch(`${this._serverUrl}/users/me`, {
       method: 'PATCH',
       credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        email: data.email
+        name: data.nameProfile,
+        email: data.emailProfile
       })
     })
       .then(res => this._handleResult(res));

@@ -79,7 +79,7 @@ function App() {
 
   // Обновление данных пользователя
   function handleUpdateUserData(data) {
-    mainApi.updateUserDara(data)
+    mainApi.updateUserData(data)
       .then(res => {
         setCurrentUser(res);
       })

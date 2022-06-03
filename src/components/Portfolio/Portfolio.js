@@ -11,6 +11,7 @@ function Portfolio() {
             className='portfolio__item-link'
             href='https://github.com/andrey-71/how-to-learn'
             target='_blank'
+            rel='noreferrer'
           >
             Статичный сайт
           </a>
@@ -21,6 +22,7 @@ function Portfolio() {
             className='portfolio__item-link'
             href='https://github.com/andrey-71/russian-travel'
             target='_blank'
+            rel='noreferrer'
           >
             Адаптивный сайт
           </a>
@@ -31,6 +33,7 @@ function Portfolio() {
             className='portfolio__item-link'
             href='https://github.com/andrey-71/react-mesto-auth'
             target='_blank'
+            rel='noreferrer'
           >
             Одностраничное приложение
           </a>

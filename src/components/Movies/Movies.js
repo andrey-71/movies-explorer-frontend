@@ -55,6 +55,10 @@ function Movies() {
         .then((movies) => {
           setAllMovies(movies);
           setLocalStorageInitialData();
+          !localStorage.renderMovies ?
+            setIsMessageNotFoundMovies('Введите ключевое слово')
+            :
+            setIsMessageNotFoundMovies('');
         })
         .catch(err => console.log(err))
         .finally(() => {
@@ -92,26 +96,18 @@ function Movies() {
     setRenderMovies(renderMoviesList);
   }
 
-  // Функция обработки данных в поисковой строке
-  function handleChangeDataSearch(evt) {
-    setDataSearch(evt.target.value);
-  }
-
   // Функция поиска фильмов
-  function searchMovies(evt) {
-    evt.preventDefault();
-    if (dataSearch.length !== 0) {
+  function searchMovies(data) {
+    if (data.length !== 0) {
       try {
-        handleRenderMovies(handleFoundMovies(dataSearch));
+        setDataSearch(data);
+        handleRenderMovies(handleFoundMovies(data));
         localStorage.setItem('filterShortMovies', JSON.stringify(isFilterShortMovies));
-        localStorage.setItem('dataSearchMovies', dataSearch);
+        localStorage.setItem('dataSearchMovies', data);
       }
       catch (err) {
         console.log('Произошла ошибка');
       }
-    }
-    else {
-      console.log('Введите название фильма');
     }
   }
 
@@ -173,7 +169,6 @@ function Movies() {
         setSavedMovies(allSavedMovies => {
           return [...allSavedMovies, movie];
         })
-        console.log(movie);
       })
       .catch(err => console.log(`При сохранении фильма произошла ошибка: ${err}`));
   }
@@ -211,7 +206,6 @@ function Movies() {
       <SearchForm
         dataSearch={dataSearch}
         isFilterShortMovies={isFilterShortMovies}
-        onChangeDataSearch={handleChangeDataSearch}
         onSearchMovies={searchMovies}
         onFilteredShortMovies={handleFilteredShortMovies}
       />

@@ -2,8 +2,8 @@ import './SavedMovies.css';
 import { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import SavedMoviesCardList from '../SavedMoviesCardList/SavedMoviesCardList';
-import mainApi from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
+import mainApi from '../../utils/MainApi';
 
 function SavedMovies() {
   // Сохраненные фильмы
@@ -31,25 +31,16 @@ function SavedMovies() {
       .finally(() => setIsPreloader(false))
   }, []);
 
-  // Функция обработки данных в поисковой строке
-  function handleChangeDataSearch(evt) {
-    setDataSearch(evt.target.value);
-  }
-
   // Функция поиска фильмов
-  function searchMovies(evt) {
-    evt.preventDefault();
-    if (dataSearch.length !== 0) {
+  function searchMovies(data) {
+    if (data.length !== 0) {
       try {
-        handleFoundSavedMovies(dataSearch);
+        setDataSearch(data);
+        handleFoundSavedMovies(data);
       }
       catch (err) {
         console.log('Произошла ошибка');
       }
-    } else if (dataSearch.length === 0 && isFilterShortMovies) {
-      setRenderMovies(savedMovies.filter(movie => movie.duration <= 40));
-    } else {
-      setRenderMovies(savedMovies);
     }
   }
 
@@ -86,7 +77,6 @@ function SavedMovies() {
       <SearchForm
         dataSearch={dataSearch}
         isFilterShortMovies={isFilterShortMovies}
-        onChangeDataSearch={handleChangeDataSearch}
         onSearchMovies={searchMovies}
         onFilteredShortMovies={handleFilteredShortMovies}
       />

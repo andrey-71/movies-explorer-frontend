@@ -1,9 +1,35 @@
 import './Authorization.css';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import Logo from '../Logo/Logo';
 
 function Authorization(props) {
-  const pathCurrent = window.location.pathname;
+  const path = window.location.pathname;
+
+  // Hook-form валидация
+  const {
+    register,
+    getValues,
+    formState: { errors, isValid },
+    handleSubmit,
+    reset,
+  } = useForm({
+    mode: 'onChange',
+  });
+
+  const errorMessage = {
+    name: errors?.nameRegister?.message,
+    email: path === '/signup' ? errors?.emailRegister?.message : errors?.emailLogin?.message,
+    password: path === '/signup' ? errors?.passwordRegister?.message : errors?.passwordLogin?.message,
+  };
+
+  // Функция отправки формы
+  function onSubmit() {
+    props.onSubmit(getValues());
+    reset({
+      isValid: false,
+    });
+  }
 
   return (
     <section className='authorization'>
@@ -14,69 +40,95 @@ function Authorization(props) {
       <div className='authorization__form-container'>
         <form
           className='authorization__form'
+          name={`form${props.namePage}`}
           id='authorization-form'
-          name={`form-${props.namePage}`}
+          noValidate={true}
+          onSubmit={handleSubmit(onSubmit)}
         >
-          {pathCurrent === '/signup' &&
+          {path === '/signup' &&
             <label className='authorization__input-item'>
               <p className='authorization__input-description'>Имя</p>
               <input
-                className='authorization__input'
+                className={`authorization__input ${errorMessage?.name?.length && 'authorization__input-error'}`}
                 type='text'
-                name={`name-${props.namePage}`}
                 placeholder='Введите имя'
-                value={props.isName}
-                onChange={props.onName}
+                {...register(`name${props.namePage}`,{
+                  required: 'Это поле необходимо заполнить',
+                  minLength: {
+                    value: 2,
+                    message: 'Имя не должно быть короче 2-х символов'
+                  },
+                  maxLength: {
+                    value: 30,
+                    message: 'Имя не должно превышать 30 символов'
+                  },
+                  pattern: {
+                    value: /^[а-яёa-z\-\s]+$/i,
+                    message: 'Только латиница, кирилица, пробел или дефис'
+                  }
+                })}
               />
+              <span className={`authorization__text-error ${!isValid && `authorization__text-error_visible`}`}>
+                {errorMessage.name}
+              </span>
             </label>
           }
           <label className='authorization__input-item'>
             <p className='authorization__input-description'>E-mail</p>
             <input
-              className='authorization__input'
+              className={`authorization__input ${errorMessage?.email?.length && 'authorization__input-error'}`}
               type='email'
-              name={`email-${props.namePage}`}
               placeholder='Введите e-mail'
-              value={props.isEmail}
-              onChange={props.onEmail}
+              {...register(`email${props.namePage}`,{
+                required: 'Это поле необходимо заполнить',
+                pattern: {
+                  value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                  message: 'Укажите адрес электронной почты'
+                }
+              })}
             />
+            <span className={`authorization__text-error ${!isValid && `authorization__text-error_visible`}`}>
+              {errorMessage.email}
+            </span>
           </label>
           <label className='authorization__input-item'>
             <p className='authorization__input-description'>Пароль</p>
             <input
-              className='authorization__input authorization__input-error'
+              className={`authorization__input ${errorMessage?.password?.length && 'authorization__input-error'}`}
               type='password'
-              name={`password-${props.namePage}`}
               placeholder='Введите пароль'
-              value={props.isPassword}
-              onChange={props.onPassword}
+              {...register(`password${props.namePage}`,{
+                required: 'Это поле необходимо заполнить',
+              })}
             />
+            <span className={`authorization__text-error ${!isValid && `authorization__text-error_visible`}`}>
+              {errorMessage.password}
+            </span>
           </label>
-          <span className='authorization__text-error authorization__text-error_visible'>Что-то пошло не так...</span>
         </form>
       </div>
       <div
-        className={pathCurrent === '/signin' ?
+        className={path === '/signin' ?
           'authorization__footer authorization__footer_login'
           :
           'authorization__footer'}
       >
         <button
-          className='authorization__submit-button'
+          className={`authorization__submit-button ${!isValid && `authorization__submit-button_disabled`}`}
           type='submit'
           form='authorization-form'
-          onClick={props.onSubmit}
+          disabled={!isValid}
         >
           {props.submitTextButton}
         </button>
         <div className='authorization__link-container'>
           <p className='authorization__link-description'>
-            {pathCurrent === '/signup' && 'Уже зарегистрированы?'}
-            {pathCurrent === '/signin' && 'Ещё не зарегистрированы?'}
+            {path === '/signup' && 'Уже зарегистрированы?'}
+            {path === '/signin' && 'Ещё не зарегистрированы?'}
           </p>
           <Link className='authorization__link' to={props.redirectPath}>
-            {pathCurrent === '/signup' && 'Войти'}
-            {pathCurrent === '/signin' && 'Регистрация'}
+            {path === '/signup' && 'Войти'}
+            {path === '/signin' && 'Регистрация'}
           </Link>
         </div>
       </div>

@@ -12,9 +12,9 @@ class MainApi {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        password: data.password
+        name: data.nameRegister,
+        email: data.emailRegister,
+        password: data.passwordRegister
       })
     })
       .then(res => this._handleResult(res))
@@ -27,8 +27,8 @@ class MainApi {
       credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
-        email: data.email,
-        password: data.password
+        email: data.emailLogin,
+        password: data.passwordLogin
       })
     })
       .then(res => this._handleResult(res))

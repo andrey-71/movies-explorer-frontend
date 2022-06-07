@@ -53,7 +53,7 @@
 }
 
 .authorization__input-item:not(:last-of-type) {
-  padding-bottom: 20px;
+  padding-bottom: 8px;
 }
 
 .authorization__input-description {
@@ -103,10 +103,15 @@
   color: #ee3465;
 }
 
+.authorization__input-error:hover, .authorization__input-error:focus {
+  border: 1px solid #ee3465;
+}
+
 .authorization__text-error {
   opacity: 0;
   display: block;
-  padding-top: 10px;
+  min-height: 12px;
+  padding-left: 15px;
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -162,6 +167,16 @@
 
 .authorization__submit-button:hover {
   opacity: .7;
+}
+
+.authorization__submit-button_disabled {
+  background-color: #f4f4f4;
+  color: #9b9b9b;
+  cursor: default;
+}
+
+.authorization__submit-button_disabled:hover {
+  opacity: 1;
 }
 
 .authorization__link-container {

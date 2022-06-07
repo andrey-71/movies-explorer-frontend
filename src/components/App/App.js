@@ -35,7 +35,7 @@ function App() {
   function handleRegister(userData) {
     mainApi.register(userData)
       .then(() => {
-        handleLogin(userData);
+        handleLogin({emailLogin: userData.emailRegister, passwordLogin: userData.passwordRegister});
       })
       .catch(err => console.log(`При регистрации произошла ошибка: ${err}`));
   }

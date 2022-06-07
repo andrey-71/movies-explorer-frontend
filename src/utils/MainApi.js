@@ -75,10 +75,13 @@ class MainApi {
   }
 
   // Запрос сохраненных фильмов
-  getSavedMovies() {
+  getSavedMovies(id) {
     return fetch(`${this._serverUrl}/movies/`, {
       credentials: 'include',
-      headers: this._headers
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${id}`
+      }
     })
       .then(res => this._handleResult(res));
   }

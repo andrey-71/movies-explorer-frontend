@@ -68,7 +68,7 @@ function Movies() {
 
   // Загрузка сохраненных фильмов
   useEffect(() => {
-    mainApi.getSavedMovies()
+    mainApi.getSavedMovies(localStorage.idUser)
       .then(savedMovies => {
         setSavedMovies(savedMovies);
       })

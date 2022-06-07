@@ -22,7 +22,7 @@ function SavedMovies() {
   // Загрузка сохраненных фильмов
   useEffect(() => {
     setIsPreloader(true);
-    mainApi.getSavedMovies()
+    mainApi.getSavedMovies(localStorage.idUser)
       .then(savedMovies => {
         setSavedMovies(savedMovies);
         setRenderMovies(savedMovies);

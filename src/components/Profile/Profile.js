@@ -1,5 +1,5 @@
 import './Profile.css';
-import {useContext } from 'react';
+import {useContext, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -13,6 +13,7 @@ function Profile(props) {
     getValues,
     formState: { errors, isValid },
     handleSubmit,
+    setValue,
     reset,
   } = useForm({
     mode: 'onChange',
@@ -26,6 +27,13 @@ function Profile(props) {
     });
   }
 
+  const dataUserInput = getValues();
+  useEffect(() => {
+    setValue('nameProfile', currentUser.name);
+    setValue('emailProfile', currentUser.email);
+  },[]);
+
+
   return (
     <section className='profile'>
       <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
@@ -38,30 +46,35 @@ function Profile(props) {
         <label className='profile__input-item'>
           <p className='profile__input-description'>Имя</p>
           <input
-            className='profile__input'
+            className={`profile__input ${errors?.nameProfile?.message && 'profile__input-error'}`}
             type='text'
             placeholder='Введите имя'
-            defaultValue={currentUser.name}
             {...register('nameProfile', {
               required: 'Это поле необходимо заполнить',
               minLength: {
                 value: 2,
                 message: 'Имя не должно быть короче 2-х символов'
               },
-              maxLength: 30
+              maxLength: {
+                value: 30,
+                message: 'Имя не должно превышать 30 символов'
+              },
+              pattern: {
+                value: /^[а-яёa-z\-\s]+$/i,
+                message: 'Только латиница, кирилица, пробел или дефис'
+              }
             })}
           />
-          <span className={`profile__input-error ${!isValid && `profile__input-error_visible`}`}>
+          <span className={`profile__text-error ${!isValid && `profile__text-error_visible`}`}>
             {errors?.nameProfile?.message || ''}
           </span>
         </label>
         <label className='profile__input-item'>
           <p className='profile__input-description'>E-mail</p>
           <input
-            className='profile__input'
+            className={`profile__input ${errors?.emailProfile?.message && 'profile__input-error'}`}
             type='email'
             placeholder='Введите e-mail'
-            defaultValue={currentUser.email}
             {...register('emailProfile', {
               required: 'Это поле необходимо заполнить',
               pattern: {
@@ -70,12 +83,12 @@ function Profile(props) {
               }
             })}
           />
-          <span className={`profile__input-error ${!isValid && `profile__input-error_visible`}`}>
+          <span className={`profile__text-error ${!isValid && `profile__text-error_visible`}`}>
             {errors?.emailProfile?.message || ''}
           </span>
         </label>
         <button
-          className='profile__submit-button'
+          className={`profile__submit-button ${!errors?.nameProfile || !errors?.emailProfile && 'profile__submit-button_disabled'}`}
           type='submit'
           disabled={!isValid}
         >

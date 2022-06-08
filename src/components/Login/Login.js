@@ -10,6 +10,7 @@ function Login(props) {
         redirectPath='/signup'
         title='Рады видеть!'
         submitTextButton='Войти'
+        isError={props.isError}
         onSubmit={props.onLogin}
       />
     </section>

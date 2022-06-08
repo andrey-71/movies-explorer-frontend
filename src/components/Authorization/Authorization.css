@@ -133,13 +133,53 @@
 .authorization__footer {
   max-width: 456px;
   width: 100%;
-  margin-top: 70px;
+  margin-top: 30px;
   padding: 0 30px 30px;
   box-sizing: border-box;
 }
 
 .authorization__footer_login {
-  padding-top: 109px;
+  padding-top: 88px;
+}
+
+.authorization__error-title {
+  height: 18px;
+  margin: 0;
+  padding: 0 10px 10px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.23;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-align: center;
+  color: #ee3465;
+}
+
+.authorization__error-message {
+  height: 27px;
+  margin: 0;
+  padding: 0 10px 20px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 12px;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-align: center;
+  overflow: hidden;
+  color: #ee3465;
 }
 
 .authorization__submit-button {
@@ -256,10 +296,18 @@
   }
   
   .authorization__footer {
-    padding-top: calc(100vh - 693px);
+    padding-top: calc(100vh - 718px);
   }
   
   .authorization__footer_login {
-    padding-top: calc(100vh - 605px);
+    padding-top: calc(100vh - 630px);
+  }
+
+  .authorization__error-title {
+    font-size: 12px;
+  }
+
+  .authorization__error-message {
+    font-size: 11px;
   }
 }

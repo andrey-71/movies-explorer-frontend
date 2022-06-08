@@ -113,6 +113,12 @@ function Authorization(props) {
           :
           'authorization__footer'}
       >
+        <div>
+          <h2 className="authorization__error-title">{props.isError.title}</h2>
+          <p className="authorization__error-message">
+            {props.isError.message}
+          </p>
+        </div>
         <button
           className={`authorization__submit-button ${!isValid && `authorization__submit-button_disabled`}`}
           type='submit'

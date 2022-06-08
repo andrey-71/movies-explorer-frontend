@@ -24,6 +24,8 @@ function App() {
   // Информационный попап
   const [isInfoTooltip, setIsInfoTooltip] = useState(false);
   const [infoTooltipData, setInfoTooltipData] = useState({});
+  // Ошибка регистрации/авторизации
+  const [isAuthError, setIsAuthError] = useState({});
 
   // Автоматическая авторизация при наличии id пользователя в localStorage
   useEffect(() => {
@@ -41,7 +43,13 @@ function App() {
       .then(() => {
         handleLogin({emailLogin: userData.emailRegister, passwordLogin: userData.passwordRegister});
       })
-      .catch(err => console.log(`При регистрации произошла ошибка: ${err}`))
+      .catch(err => {
+        setIsAuthError({
+          title: err,
+          message: 'При регистрации произошла ошибка'
+        });
+        setTimeout(handleResetAuthError, 3000);
+      })
   }
 
   // Авторизация пользователя
@@ -53,7 +61,13 @@ function App() {
         setIsLogged(true);
         navigate('/movies');
       })
-      .catch(err => console.log(`При авторизации произошла ошибка: ${err}`))
+      .catch(err => {
+        setIsAuthError({
+          title: err,
+          message: 'При авторизации произошла ошибка'
+        });
+        setTimeout(handleResetAuthError, 3000);
+      })
   }
 
   // Выход из учетной записи
@@ -146,6 +160,11 @@ function App() {
     }
   }, [isInfoTooltip]);
 
+  // Сброс ошибки регистрации/авторизации
+  function handleResetAuthError() {
+    setIsAuthError({});
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='page'>
@@ -176,6 +195,7 @@ function App() {
           <Route path='/signup' element={
             <main className='content page__content'>
               <Register
+                isError={isAuthError}
                 onRegister={handleRegister}
               />
             </main>
@@ -185,6 +205,7 @@ function App() {
           <Route path='/signin' element={
             <main className='content page__content'>
               <Login
+                isError={isAuthError}
                 onLogin={handleLogin}
               />
             </main>

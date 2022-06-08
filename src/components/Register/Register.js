@@ -10,6 +10,7 @@ function Register(props) {
         redirectPath='/signin'
         title='Добро пожаловать!'
         submitTextButton='Зарегистрироваться'
+        isError={props.isError}
         onSubmit={props.onRegister}
       />
     </section>

@@ -1,0 +1,127 @@
+.popup {
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 3;
+  transition: .3s linear;
+}
+
+.popup_active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup__container {
+  position: relative;
+  width: 380px;
+  height: 280px;
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+.popup__image {
+  width: 130px;
+  height: 130px;
+  margin: 30px auto 20px;
+  /*background: url('../../images/info-tooltip-success.svg') center no-repeat;*/
+  /*background-size: contain;*/
+}
+
+.popup__image_success {
+  background: url('../../images/info-tooltip-success.svg') center no-repeat;
+  background-size: contain;
+}
+
+.popup__image_error {
+  background: url('../../images/info-tooltip-error.svg') center no-repeat;
+  background-size: contain;
+}
+
+.popup__title {
+  margin: 0;
+  padding: 0 10px 10px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.23;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-align: center;
+}
+
+.popup__message {
+  margin: 0;
+  padding: 0 10px 20px;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 12px;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-align: center;
+  overflow: hidden;
+}
+
+.popup__btn-close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background: url('../../images/popup-icon-close.svg') center no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.popup__btn-close:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 480px) {
+  .popup__container {
+    width: 260px;
+    height: 240px;
+  }
+
+  .popup__image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .popup__title {
+    font-size: 12px;
+  }
+
+  .popup__message {
+    font-size: 11px;
+  }
+
+  .popup__btn-close {
+    top: -23px;
+    right: -23px;
+    width: 18px;
+    height: 18px;
+  }
+}

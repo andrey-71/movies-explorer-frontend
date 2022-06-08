@@ -20,6 +20,9 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   // Данные пользователя
   const [currentUser, setCurrentUser] = useState({});
+  // Информационный попап
+  const [isInfoTooltip, setIsInfoTooltip] = useState(false);
+  const [infoTooltipData, setInfoTooltipData] = useState({});
 
   // Автоматическая авторизация при наличии id пользователя в localStorage
   useEffect(() => {
@@ -82,9 +85,51 @@ function App() {
     mainApi.updateUserData(data)
       .then(res => {
         setCurrentUser(res);
+        setIsInfoTooltip(true);
+        setInfoTooltipData({
+          state: true,
+          title: 'Данные успешно обновлены'
+        })
+        setTimeout(closeInfoTooltip, 2000);
       })
-      .catch(err => console.log(`При обновлении данных пользователя произошла ошибка: ${err}`))
+      .catch(err => {
+        setIsInfoTooltip(true);
+        setInfoTooltipData({
+          state: false,
+          title: 'При обновлении данных пользователя произошла ошибка',
+          message: err
+        });
+      })
   }
+
+  // Закрытие попапа
+  function closeInfoTooltip() {
+    setIsInfoTooltip(false);
+    setInfoTooltipData({});
+  }
+  // Закрытие попапа при клике на overlay
+  function closeInfoTooltipOverlayClick(evt) {
+    if (evt.target.classList.contains('popup')) {
+      closeInfoTooltip();
+      setInfoTooltipData({});
+    }
+  }
+  // Закрытие попапа при нажатии Esc
+  function closeInfoTooltipEscClick(evt) {
+    if (evt.key === 'Escape') {
+      closeInfoTooltip();
+    }
+  }
+  // Установка слушателя нажатия клавиши Esc при открытом InfoTooltip
+  useEffect(() => {
+    if (isInfoTooltip) {
+      document.addEventListener('keyup', closeInfoTooltipEscClick);
+      // Снятие слушателя
+      return () => {
+        document.removeEventListener('keyup', closeInfoTooltipEscClick);
+      };
+    }
+  }, [isInfoTooltip]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -144,8 +189,18 @@ function App() {
                 <Header isLogged={isLogged} />
                 <main className='content page__content'>
                   <Profile
+                    infoTooltip={{
+                      isOpen: isInfoTooltip,
+                      state: infoTooltipData.state,
+                      title: infoTooltipData.title,
+                      message: infoTooltipData.message,
+                      onClose: closeInfoTooltip,
+                      onCloseOverlay: closeInfoTooltipOverlayClick
+                    }}
+                    isInfoTooltipData={infoTooltipData}
                     onDataUpdate={handleUpdateUserData}
                     onLogout={handleLogout}
+                    onCloseInfoTooltip
                   />
                 </main>
               </ProtectedRoute>

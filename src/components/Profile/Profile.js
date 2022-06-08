@@ -3,7 +3,7 @@ import {useContext, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import InfoTooltipPopup from '../ResultRequestPopup/InfoTooltipPopup';
+import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
 
 function Profile(props) {
   const currentUser = useContext(CurrentUserContext);

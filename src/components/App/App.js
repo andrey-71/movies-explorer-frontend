@@ -88,8 +88,8 @@ function App() {
         setIsInfoTooltip(true);
         setInfoTooltipData({
           state: false,
-          title: 'При выходе из учетной записи произошла ошибка',
-          message: err
+          title: err,
+          message: 'При выходе из учетной записи произошла ошибка'
         });
       })
   }
@@ -104,8 +104,8 @@ function App() {
         setIsInfoTooltip(true);
         setInfoTooltipData({
           state: false,
-          title: 'При загрузке данных пользователя произошла ошибка',
-          message: err
+          title: err,
+          message: 'При загрузке данных пользователя произошла ошибка'
         });
       })
   }
@@ -126,8 +126,8 @@ function App() {
         setIsInfoTooltip(true);
         setInfoTooltipData({
           state: false,
-          title: 'При обновлении данных пользователя произошла ошибка',
-          message: err
+          title: err,
+          message: 'При обновлении данных пользователя произошла ошибка'
         });
       })
   }
@@ -221,7 +221,18 @@ function App() {
               <ProtectedRoute isLogin={isLogged}>
                 <Header isLogged={isLogged} />
                 <main className='content page__content'>
-                  <Movies />
+                  <Movies
+                    infoTooltip={{
+                      isOpen: isInfoTooltip,
+                      setIsOpen: setIsInfoTooltip,
+                      state: infoTooltipData.state,
+                      title: infoTooltipData.title,
+                      message: infoTooltipData.message,
+                      setIsData: setInfoTooltipData,
+                      onClose: closeInfoTooltip,
+                      onCloseOverlay: closeInfoTooltipOverlayClick
+                    }}
+                  />
                 </main>
                 <Footer />
               </ProtectedRoute>
@@ -232,7 +243,18 @@ function App() {
               <ProtectedRoute isLogin={isLogged}>
                 <Header isLogged={isLogged} />
                 <main className='content page__content'>
-                  <SavedMovies />
+                  <SavedMovies
+                    infoTooltip={{
+                      isOpen: isInfoTooltip,
+                      setIsOpen: setIsInfoTooltip,
+                      state: infoTooltipData.state,
+                      title: infoTooltipData.title,
+                      message: infoTooltipData.message,
+                      setIsData: setInfoTooltipData,
+                      onClose: closeInfoTooltip,
+                      onCloseOverlay: closeInfoTooltipOverlayClick
+                    }}
+                  />
                 </main>
                 <Footer />
               </ProtectedRoute>

@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import AddMovies from '../AddMovies/AddMovies';
+import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
 import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
 import { serverUrl } from '../../utils/config'
 
-function Movies() {
+function Movies({infoTooltip}) {
   // Все фильмы
   const [allMovies, setAllMovies] = useState([]);
   // Найденные при поиске фильмы
@@ -60,7 +61,14 @@ function Movies() {
             :
             setIsMessageNotFoundMovies('');
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          infoTooltip.setIsOpen(true);
+          infoTooltip.setIsData({
+            state: false,
+            title: err,
+            message: 'При загрузке фильмов произошла ошибка'
+          });
+        })
         .finally(() => {
           setIsPreloader(false);
         });
@@ -71,6 +79,14 @@ function Movies() {
     mainApi.getSavedMovies(localStorage.idUser)
       .then(savedMovies => {
         setSavedMovies(savedMovies);
+      })
+      .catch(err => {
+        infoTooltip.setIsOpen(true);
+        infoTooltip.setIsData({
+          state: false,
+          title: err,
+          message: 'При загрузке сохраненных фильмов произошла ошибка'
+        });
       })
   }, []);
 
@@ -105,13 +121,18 @@ function Movies() {
         localStorage.setItem('filterShortMovies', JSON.stringify(isFilterShortMovies));
         localStorage.setItem('dataSearchMovies', data);
       }
-      catch (err) {
-        console.log('Произошла ошибка');
+      catch(err) {
+        infoTooltip.setIsOpen(true);
+        infoTooltip.setIsData({
+          state: false,
+          title: err,
+          message: 'Произошла ошибка'
+        });
       }
     }
   }
 
-  // Функция обработки результатов посика
+  // Функция обработки результатов поиска
   function handleFoundMovies(dataSearch) {
     if (isFilterShortMovies) {
       const foundMoviesList = allMovies.filter(movie => movie.nameRU.toLowerCase().indexOf(dataSearch.toLowerCase()) >= 0);
@@ -170,7 +191,14 @@ function Movies() {
           return [...allSavedMovies, movie];
         })
       })
-      .catch(err => console.log(`При сохранении фильма произошла ошибка: ${err}`));
+      .catch(err => {
+        infoTooltip.setIsOpen(true);
+        infoTooltip.setIsData({
+          state: false,
+          title: err,
+          message: 'При сохранении фильма произошла ошибка'
+        });
+      })
   }
 
   // Функция удаления фильма
@@ -181,7 +209,14 @@ function Movies() {
           .then(() => {
             setSavedMovies(savedMovies.filter(((m) => m._id !== savedMovie._id)));
           })
-          .catch(err => console.log(`При удалении фильма произошла ошибка: ${err}`));
+          .catch(err => {
+            infoTooltip.setIsOpen(true);
+            infoTooltip.setIsData({
+              state: false,
+              title: err,
+              message: 'При удалении фильма произошла ошибка'
+            });
+          })
     })
   }
 
@@ -203,6 +238,7 @@ function Movies() {
 
   return (
     <section className="movies">
+      <InfoTooltipPopup infoTooltip={infoTooltip} />
       <SearchForm
         dataSearch={dataSearch}
         isFilterShortMovies={isFilterShortMovies}

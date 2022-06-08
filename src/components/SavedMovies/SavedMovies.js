@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import SavedMoviesCardList from '../SavedMoviesCardList/SavedMoviesCardList';
 import Preloader from '../Preloader/Preloader';
+import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
 import mainApi from '../../utils/MainApi';
 
-function SavedMovies() {
+function SavedMovies({infoTooltip}) {
   // Сохраненные фильмы
   const [savedMovies, setSavedMovies] = useState([]);
   // Фильмы для рендеринга
@@ -27,7 +28,14 @@ function SavedMovies() {
         setSavedMovies(savedMovies);
         setRenderMovies(savedMovies);
       })
-      .catch(err => console.log(`При загрузке сохраненных фильмов произошла ошибка: ${err}`))
+      .catch(err => {
+        infoTooltip.setIsOpen(true);
+        infoTooltip.setIsData({
+          state: false,
+          title: err,
+          message: 'При загрузке сохраненных фильмов произошла ошибка'
+        });
+      })
       .finally(() => setIsPreloader(false))
   }, []);
 
@@ -39,7 +47,12 @@ function SavedMovies() {
         handleFoundSavedMovies(data);
       }
       catch (err) {
-        console.log('Произошла ошибка');
+        infoTooltip.setIsOpen(true);
+        infoTooltip.setIsData({
+          state: false,
+          title: err,
+          message: 'Произошла ошибка'
+        });
       }
     }
   }
@@ -69,11 +82,19 @@ function SavedMovies() {
         setSavedMovies(savedMovies.filter((savedMovie) => savedMovie._id !== movie._id));
         setRenderMovies(savedMovies.filter((savedMovie) => savedMovie._id !== movie._id));
       })
-      .catch(err => console.log(`При удалении фильма произошла ошибка: ${err}`));
+      .catch(err => {
+        infoTooltip.setIsOpen(true);
+        infoTooltip.setIsData({
+          state: false,
+          title: err,
+          message: 'При удалении фильма произошла ошибка'
+        });
+      })
   }
 
   return (
     <section className='saved-movies'>
+      <InfoTooltipPopup infoTooltip={infoTooltip} />
       <SearchForm
         dataSearch={dataSearch}
         isFilterShortMovies={isFilterShortMovies}

@@ -68,7 +68,15 @@ function App() {
         setIsLogged(false);
         navigate('/');
       })
-      .catch(err => console.log(`При выходе из учетной записи произошла ошибка: ${err}`))
+      // .catch(err => console.log(`При выходе из учетной записи произошла ошибка: ${err}`))
+      .catch(err => {
+        setIsInfoTooltip(true);
+        setInfoTooltipData({
+          state: false,
+          title: 'При выходе из учетной записи произошла ошибка',
+          message: err
+        });
+      })
   }
 
   // Получение данных пользователя по id

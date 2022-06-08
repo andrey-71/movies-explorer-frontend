@@ -2,6 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import UnprotectedRoute from '../../UnprotectedRoute/UnprotectedRoute';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -193,22 +194,26 @@ function App() {
 
           {/*Регистрация*/}
           <Route path='/signup' element={
-            <main className='content page__content'>
-              <Register
-                isError={isAuthError}
-                onRegister={handleRegister}
-              />
-            </main>
+            <UnprotectedRoute isLogin={isLogged}>
+              <main className='content page__content'>
+                <Register
+                  isError={isAuthError}
+                  onRegister={handleRegister}
+                />
+              </main>
+            </UnprotectedRoute>
           } />
 
           {/*Авторизация*/}
           <Route path='/signin' element={
-            <main className='content page__content'>
-              <Login
-                isError={isAuthError}
-                onLogin={handleLogin}
-              />
-            </main>
+            <UnprotectedRoute isLogin={isLogged}>
+              <main className='content page__content'>
+                <Login
+                  isError={isAuthError}
+                  onLogin={handleLogin}
+                />
+              </main>
+            </UnprotectedRoute>
           } />
 
             {/*Фильмы*/}

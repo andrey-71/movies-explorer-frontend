@@ -13,6 +13,7 @@ import Login from "../Login/Login";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Footer from '../Footer/Footer';
 import mainApi from "../../utils/MainApi";
+import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
 
 function App() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ function App() {
       .then(() => {
         handleLogin({emailLogin: userData.emailRegister, passwordLogin: userData.passwordRegister});
       })
-      .catch(err => console.log(`При регистрации произошла ошибка: ${err}`));
+      .catch(err => console.log(`При регистрации произошла ошибка: ${err}`))
   }
 
   // Авторизация пользователя
@@ -68,7 +69,6 @@ function App() {
         setIsLogged(false);
         navigate('/');
       })
-      // .catch(err => console.log(`При выходе из учетной записи произошла ошибка: ${err}`))
       .catch(err => {
         setIsInfoTooltip(true);
         setInfoTooltipData({
@@ -85,7 +85,14 @@ function App() {
       .then(userData => {
         setCurrentUser(userData);
       })
-      .catch(err => console.log(`При загрузке данных пользователя произошла ошибка: ${err}`))
+      .catch(err => {
+        setIsInfoTooltip(true);
+        setInfoTooltipData({
+          state: false,
+          title: 'При загрузке данных пользователя произошла ошибка',
+          message: err
+        });
+      })
   }
 
   // Обновление данных пользователя
@@ -147,6 +154,16 @@ function App() {
           {/*О проекте*/}
           <Route path='/' element={
             <>
+              <InfoTooltipPopup
+                infoTooltip={{
+                  isOpen: isInfoTooltip,
+                  state: infoTooltipData.state,
+                  title: infoTooltipData.title,
+                  message: infoTooltipData.message,
+                  onClose: closeInfoTooltip,
+                  onCloseOverlay: closeInfoTooltipOverlayClick
+                }}
+              />
               <Header isLogged={isLogged} />
               <main className='content page__content'>
                 <Main />
@@ -158,14 +175,18 @@ function App() {
           {/*Регистрация*/}
           <Route path='/signup' element={
             <main className='content page__content'>
-              <Register onRegister={handleRegister} />
+              <Register
+                onRegister={handleRegister}
+              />
             </main>
           } />
 
           {/*Авторизация*/}
           <Route path='/signin' element={
             <main className='content page__content'>
-              <Login onLogin={handleLogin} />
+              <Login
+                onLogin={handleLogin}
+              />
             </main>
           } />
 
@@ -205,7 +226,6 @@ function App() {
                       onClose: closeInfoTooltip,
                       onCloseOverlay: closeInfoTooltipOverlayClick
                     }}
-                    isInfoTooltipData={infoTooltipData}
                     onDataUpdate={handleUpdateUserData}
                     onLogout={handleLogout}
                     onCloseInfoTooltip
@@ -220,6 +240,7 @@ function App() {
               <NotFoundPage />
             </main>
           } />
+
         </Routes>
       </div>
     </CurrentUserContext.Provider>

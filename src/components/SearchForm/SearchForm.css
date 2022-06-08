@@ -81,6 +81,8 @@
 }
 
 .search__button_disabled {
+  background-color: #9b9b9b;
+  cursor: default;
   opacity: .7;
 }
 

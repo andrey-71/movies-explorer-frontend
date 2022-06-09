@@ -1,5 +1,5 @@
 import './Profile.css';
-import {useContext, useEffect} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -7,10 +7,13 @@ import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
 
 function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
+  const [isNameValid, setIsNameValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
   // Hook-form валидация
   const {
     register,
+    watch,
     getValues,
     formState: { errors, isValid },
     handleSubmit,
@@ -28,11 +31,32 @@ function Profile(props) {
     });
   }
 
+  // Функция установки состояния валидации
+  function handleValidationState() {
+    //поля name
+    if (watch().nameProfile === currentUser.name) {setIsNameValid(false)}
+    else if (!errors?.nameProfile?.message) {setIsNameValid(true)}
+    //поля email
+    if (watch().emailProfile === currentUser.email) {setIsEmailValid(false)}
+    else if (!errors?.emailProfile?.message) {setIsEmailValid(true)}
+  }
+
+  // Запись текущих данных пользователя в инпуты, установка состояния валидации после успешного сабмита
+  // или перезагрузки страницы
   useEffect(() => {
     setValue('nameProfile', currentUser.name);
     setValue('emailProfile', currentUser.email);
-  },[]);
+    handleValidationState();
+    return () => {
+      setValue('nameProfile', '');
+      setValue('emailProfile', '');
+    }
+  },[currentUser.name, currentUser.email]);
 
+  // Установка состояния валидации при изменении данных в инпутах
+  useEffect(() => {
+    handleValidationState();
+  }, [watch().nameProfile, watch().emailProfile])
 
   return (
     <>
@@ -68,7 +92,7 @@ function Profile(props) {
                 }
               })}
             />
-            <span className={`profile__text-error ${!isValid && `profile__text-error_visible`}`}>
+            <span className={`profile__text-error ${errors?.nameProfile?.message && `profile__text-error_visible`}`}>
             {errors?.nameProfile?.message || ''}
           </span>
           </label>
@@ -86,14 +110,14 @@ function Profile(props) {
                 }
               })}
             />
-            <span className={`profile__text-error ${!isValid && `profile__text-error_visible`}`}>
+            <span className={`profile__text-error ${errors?.emailProfile?.message && `profile__text-error_visible`}`}>
             {errors?.emailProfile?.message || ''}
           </span>
           </label>
           <button
-            className={`profile__submit-button ${!errors?.nameProfile || !errors?.emailProfile && 'profile__submit-button_disabled'}`}
+            className={`profile__submit-button ${(!isNameValid && !isEmailValid)  && 'profile__submit-button_disabled'}`}
             type='submit'
-            disabled={!isValid}
+            disabled={!isNameValid && !isEmailValid}
           >
             Редактировать
           </button>

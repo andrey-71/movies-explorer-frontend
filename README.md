@@ -2,7 +2,7 @@
 Дипломный проект: фронтенд
 
 ### Ссылка на Frontend:
-https://movies-explorer.and-g.nomoredomains.work
+https://movies-explorer.andrey-g.nomoredomains.work
 
 ### Ссылка на Backend:
 https://api.movies-explorer.and-g.nomoredomains.work

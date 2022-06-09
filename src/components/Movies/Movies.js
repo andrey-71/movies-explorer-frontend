@@ -171,9 +171,9 @@ function Movies({infoTooltip}) {
       year: data.year ? data.year : '0000',
       duration: data.duration ? data.duration : 0,
       description: data.description ? data.description : 'No description',
-      trailerLink: data.trailerLink,
-      image: serverUrl.imageMovies + data.image.url,
-      thumbnail: serverUrl.imageMovies + data.image.formats.thumbnail.url
+      trailerLink: data.trailerLink ? data.trailerLink : `${serverUrl.current}/not-found`,
+      image: data.image.url ? serverUrl.imageMovies + data.image.url : `${serverUrl.current}/not-found`,
+      thumbnail: data.image.formats.thumbnail.url ? serverUrl.imageMovies + data.image.formats.thumbnail.url : `${serverUrl.current}/not-found`
     })
       .then((movie) => {
         setSavedMovies(allSavedMovies => {

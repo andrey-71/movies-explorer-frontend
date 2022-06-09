@@ -59,8 +59,15 @@ function SavedMovies({infoTooltip}) {
   }
 
   // Функция включения/отключения фильтра короткометражных фильмов
-  function handleFilteredShortMovies() {
+  function handleClickFilteredShortMovies() {
     setIsFilterShortMovies(!isFilterShortMovies);
+  }
+
+  // Функция поиска короткометражек
+  function handleFoundFilteredShortMovies() {
+    if (savedMovies.length !== 0) {
+      handleFoundSavedMovies(dataSearch);
+    }
   }
 
   // Функция удаления фильма
@@ -80,7 +87,8 @@ function SavedMovies({infoTooltip}) {
         dataSearch={dataSearch}
         isFilterShortMovies={isFilterShortMovies}
         onSearchMovies={searchMovies}
-        onFilteredShortMovies={handleFilteredShortMovies}
+        onFoundFiltered={handleFoundFilteredShortMovies}
+        onClickFiltered={handleClickFilteredShortMovies}
       />
       <SavedMoviesCardList
         movies={renderMovies}

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm(props) {
+
   // Hook-form валидация
   const {
     register,
@@ -55,7 +56,8 @@ function SearchForm(props) {
         <FilterCheckbox
           description='Короткометражки'
           isFilterShortMovies={props.isFilterShortMovies}
-          onFilteredShortMovies={props.onFilteredShortMovies}
+          onFoundFiltered={props.onFoundFiltered}
+          onClickFiltered={props.onClickFiltered}
         />
       </div>
     </section>

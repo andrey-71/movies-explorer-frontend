@@ -21,7 +21,7 @@ function MoviesCard(props) {
         <p className='card__duration'>{durationMovies}</p>
         {props.children}
       </div>
-      <a className='card__image-container' href={props.trailerLink} target='_blank'>
+      <a className='card__image-container' href={props.trailerLink} target='_blank' rel='noreferrer noopener'>
         <img
           className='card__image'
           src={props.imageLink}

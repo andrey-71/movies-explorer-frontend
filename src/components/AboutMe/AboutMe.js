@@ -22,6 +22,7 @@ function AboutMe() {
             className='about-me__link-social'
             href='https://rkn.gov.ru'
             target='_blank'
+            rel='noreferrer noopener'
           >
             Facebook
           </a>
@@ -29,6 +30,7 @@ function AboutMe() {
             className='about-me__link-social'
             href='https://github.com/andrey-71'
             target='_blank'
+            rel='noreferrer noopener'
           >
             Github
           </a>

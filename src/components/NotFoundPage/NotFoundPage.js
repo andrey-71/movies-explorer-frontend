@@ -5,7 +5,7 @@ function NotFoundPage() {
   const navigate = useNavigate();
 
   function handleClickBackButton() {
-    navigate(-1);
+    navigate(-2);
   }
 
   return (

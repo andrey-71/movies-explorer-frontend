@@ -45,10 +45,7 @@ function App() {
         handleLogin({emailLogin: userData.emailRegister, passwordLogin: userData.passwordRegister});
       })
       .catch(err => {
-        setIsAuthError({
-          title: err,
-          message: 'При регистрации произошла ошибка'
-        });
+        handleAuthError(err, 'При регистрации произошла ошибка');
         setTimeout(handleResetAuthError, 3000);
       })
   }
@@ -63,10 +60,7 @@ function App() {
         navigate('/movies');
       })
       .catch(err => {
-        setIsAuthError({
-          title: err,
-          message: 'При авторизации произошла ошибка'
-        });
+        handleAuthError(err, 'При авторизации произошла ошибка');
         setTimeout(handleResetAuthError, 3000);
       })
   }
@@ -84,14 +78,7 @@ function App() {
         setIsLogged(false);
         navigate('/');
       })
-      .catch(err => {
-        setIsInfoTooltip(true);
-        setInfoTooltipData({
-          state: false,
-          title: err,
-          message: 'При выходе из учетной записи произошла ошибка'
-        });
-      })
+      .catch(err => handleOtherError(err, 'При выходе из учетной записи произошла ошибка'))
   }
 
   // Получение данных пользователя по id
@@ -100,14 +87,7 @@ function App() {
       .then(userData => {
         setCurrentUser(userData);
       })
-      .catch(err => {
-        setIsInfoTooltip(true);
-        setInfoTooltipData({
-          state: false,
-          title: err,
-          message: 'При загрузке данных пользователя произошла ошибка'
-        });
-      })
+      .catch(err => handleOtherError(err, 'При загрузке данных пользователя произошла ошибка'))
   }
 
   // Обновление данных пользователя
@@ -115,21 +95,10 @@ function App() {
     mainApi.updateUserData(data)
       .then(res => {
         setCurrentUser(res);
-        setIsInfoTooltip(true);
-        setInfoTooltipData({
-          state: true,
-          title: 'Данные успешно обновлены'
-        })
+        handleOtherError('Данные успешно обновлены', '', true);
         setTimeout(closeInfoTooltip, 2000);
       })
-      .catch(err => {
-        setIsInfoTooltip(true);
-        setInfoTooltipData({
-          state: false,
-          title: err,
-          message: 'При обновлении данных пользователя произошла ошибка'
-        });
-      })
+      .catch(err => handleOtherError(err, 'При обновлении данных пользователя произошла ошибка'))
   }
 
   // Закрытие попапа
@@ -161,10 +130,28 @@ function App() {
     }
   }, [isInfoTooltip]);
 
-  // Сброс ошибки регистрации/авторизации
-  function handleResetAuthError() {
-    setIsAuthError({});
+  // Функция обработки ошибок регистрации/авторизации
+  function handleAuthError(err, errMessage) {
+    setIsAuthError({
+      title: err,
+      message: errMessage
+    });
   }
+  // Сброс ошибки регистрации/авторизации
+    function handleResetAuthError() {
+      setIsAuthError({});
+    }
+
+  // Функция обработки прочих ошибок
+  function handleOtherError(err, errMessage, requestResult) {
+    setIsInfoTooltip(true);
+    setInfoTooltipData({
+      state: requestResult,
+      title: err,
+      message: errMessage
+    });
+  }
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -224,11 +211,10 @@ function App() {
                   <Movies
                     infoTooltip={{
                       isOpen: isInfoTooltip,
-                      setIsOpen: setIsInfoTooltip,
                       state: infoTooltipData.state,
                       title: infoTooltipData.title,
                       message: infoTooltipData.message,
-                      setIsData: setInfoTooltipData,
+                      onError: handleOtherError,
                       onClose: closeInfoTooltip,
                       onCloseOverlay: closeInfoTooltipOverlayClick
                     }}
@@ -246,11 +232,10 @@ function App() {
                   <SavedMovies
                     infoTooltip={{
                       isOpen: isInfoTooltip,
-                      setIsOpen: setIsInfoTooltip,
                       state: infoTooltipData.state,
                       title: infoTooltipData.title,
                       message: infoTooltipData.message,
-                      setIsData: setInfoTooltipData,
+                      onError: handleOtherError,
                       onClose: closeInfoTooltip,
                       onCloseOverlay: closeInfoTooltipOverlayClick
                     }}

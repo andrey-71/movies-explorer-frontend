@@ -28,14 +28,7 @@ function SavedMovies({infoTooltip}) {
         setSavedMovies(savedMovies);
         setRenderMovies(savedMovies);
       })
-      .catch(err => {
-        infoTooltip.setIsOpen(true);
-        infoTooltip.setIsData({
-          state: false,
-          title: err,
-          message: 'При загрузке сохраненных фильмов произошла ошибка'
-        });
-      })
+      .catch(err => infoTooltip.onError(err, 'При загрузке сохраненных фильмов произошла ошибка'))
       .finally(() => setIsPreloader(false))
   }, []);
 
@@ -47,12 +40,7 @@ function SavedMovies({infoTooltip}) {
         handleFoundSavedMovies(data);
       }
       catch (err) {
-        infoTooltip.setIsOpen(true);
-        infoTooltip.setIsData({
-          state: false,
-          title: err,
-          message: 'Произошла ошибка'
-        });
+        infoTooltip.onError(err, 'Произошла ошибка');
       }
     }
   }
@@ -82,14 +70,7 @@ function SavedMovies({infoTooltip}) {
         setSavedMovies(savedMovies.filter((savedMovie) => savedMovie._id !== movie._id));
         setRenderMovies(savedMovies.filter((savedMovie) => savedMovie._id !== movie._id));
       })
-      .catch(err => {
-        infoTooltip.setIsOpen(true);
-        infoTooltip.setIsData({
-          state: false,
-          title: err,
-          message: 'При удалении фильма произошла ошибка'
-        });
-      })
+      .catch(err => infoTooltip.onError(err, 'При удалении фильма произошла ошибка'))
   }
 
   return (

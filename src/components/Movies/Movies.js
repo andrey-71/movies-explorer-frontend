@@ -49,7 +49,7 @@ function Movies({infoTooltip}) {
     return () => window.removeEventListener("resize", () => setTimeout(handleScreenWidth, 500));
   }, [renderInitialCardNumber, renderMoreCardNumber]);
 
-  // Загрузка всех карточек, запись данных из localStorage
+  // Загрузка всех фильмов, запись данных из localStorage
   useEffect(() => {
     setIsPreloader(true);
       moviesApi.getMovies()
@@ -61,14 +61,7 @@ function Movies({infoTooltip}) {
             :
             setIsMessageNotFoundMovies('');
         })
-        .catch(err => {
-          infoTooltip.setIsOpen(true);
-          infoTooltip.setIsData({
-            state: false,
-            title: err,
-            message: 'При загрузке фильмов произошла ошибка'
-          });
-        })
+        .catch(err => infoTooltip.onError(err, 'При загрузке фильмов произошла ошибка'))
         .finally(() => {
           setIsPreloader(false);
         });
@@ -80,14 +73,7 @@ function Movies({infoTooltip}) {
       .then(savedMovies => {
         setSavedMovies(savedMovies);
       })
-      .catch(err => {
-        infoTooltip.setIsOpen(true);
-        infoTooltip.setIsData({
-          state: false,
-          title: err,
-          message: 'При загрузке сохраненных фильмов произошла ошибка'
-        });
-      })
+      .catch(err => infoTooltip.onError(err, 'При загрузке сохраненных фильмов произошла ошибка'))
   }, []);
 
   // Функция записи параметров из localStorage при загрузке страницы
@@ -122,12 +108,7 @@ function Movies({infoTooltip}) {
         localStorage.setItem('dataSearchMovies', data);
       }
       catch(err) {
-        infoTooltip.setIsOpen(true);
-        infoTooltip.setIsData({
-          state: false,
-          title: err,
-          message: 'Произошла ошибка'
-        });
+        infoTooltip.onError(err, 'Произошла ошибка');
       }
     }
   }
@@ -191,14 +172,7 @@ function Movies({infoTooltip}) {
           return [...allSavedMovies, movie];
         })
       })
-      .catch(err => {
-        infoTooltip.setIsOpen(true);
-        infoTooltip.setIsData({
-          state: false,
-          title: err,
-          message: 'При сохранении фильма произошла ошибка'
-        });
-      })
+      .catch(err => infoTooltip.onError(err, 'При сохранении фильма произошла ошибка'))
   }
 
   // Функция удаления фильма
@@ -209,14 +183,7 @@ function Movies({infoTooltip}) {
           .then(() => {
             setSavedMovies(savedMovies.filter(((m) => m._id !== savedMovie._id)));
           })
-          .catch(err => {
-            infoTooltip.setIsOpen(true);
-            infoTooltip.setIsData({
-              state: false,
-              title: err,
-              message: 'При удалении фильма произошла ошибка'
-            });
-          })
+          .catch(err => infoTooltip.onError(err, 'При удалении фильма произошла ошибка'))
     })
   }
 

@@ -19,11 +19,12 @@
 }
 
 .header_type_unauthorized {
-  background-color: #dddee3;
+  background-color: rgba(221, 222, 227, .85);
 }
 
 .header_type_authorized {
   background-color: #fafafa;
+  background-color: rgba(250, 250, 250, .85);
 }
 
 @media screen and (max-width:1024px) {

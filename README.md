@@ -10,7 +10,7 @@ ___
 * Сайт: https://movies-explorer.andrey-g.nomoredomains.work
 * API: https://api.movies-explorer.and-g.nomoredomains.work
 * API с фильмами: https://api.nomoreparties.co/beatfilm-movies
-* IP-адрес сервера: 178.154.240.113
+* IP-адрес сервера: 194.87.93.117
 ___
 
 ## Функционал
